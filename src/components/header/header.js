@@ -1,7 +1,7 @@
 import React from 'react'
 import './header.css'
 import Cv from '../../assets/cv.pdf'
-import Me from '../../assets/1.jpg'
+import Me from '../../assets/1.png'
 import {HeaderSocial} from './HeaderSocial'
 import { Link, animateScroll as scroll } from "react-scroll";
 import {BsArrowUpSquareFill} from 'react-icons/bs';

@@ -9,8 +9,8 @@
     text-decoration: none!important;
 }
 :root{
-   --bg-color:#210440; 
-   --bg-color-varient:#310d57; 
+   --bg-color:#020225; 
+   --bg-color-varient:#0b0b3f; 
    --color-primary:#e5958e;
    --color-primary-light:#fdb095;
    --color-white:#fff;
@@ -67,6 +67,10 @@ a:hover{
 .btn-primary {
     background: var(--color-primary)!important;;
     color: var(--bg-color)!important;;
+}
+.btn-primary:hover {
+    background: var(--color-white)!important;;
+
 }
 img{
     display: block;
