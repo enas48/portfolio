@@ -1,0 +1,37 @@
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 380px);
+  justify-content: center;
+  gap: 2.5rem;
+  padding-bottom: 2rem;
+}
+.portfolio-item {
+  background: var(--bg-color-varient);
+  padding: 1.2rem;
+  border-radius: 2rem;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  box-shadow: 2px 3px 8px -4px var(--color-primary);
+}
+.portfolio-item:hover {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+}
+.portfolio-item-image {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.portfolio-item h4 {
+  margin: 1.2rem 0 2rem;
+}
+.portfolio-btn {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 480px) {
+  .portfolio-item {
+    width: 73%;
+    margin: 0 auto;
+  }
+}
