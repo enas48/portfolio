@@ -1,33 +1,23 @@
 import React from "react";
-import { About } from "./components/about/about";
-import { Contact } from "./components/contact/contact";
-import { Experience } from "./components/experience/experience";
-import { Footer } from "./components/footer/footer";
-import { Header } from "./components/header/header";
-import { Nav } from "./components/nav/nav";
-import { Portfolio } from "./components/portfolio/portfolio";
-import { Parallax } from "react-parallax";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { Home } from "./components/home/home";
+import { Register } from "./components/register/register";
+import { Login } from "./components/login/login";
 export const App = () => {
   return (
     <>
-      <Parallax strength={-200} bgImage={require('./assets/bg.jpg')} blur={{min:-15, max:15}}>
-        <Header />
-        </Parallax>
-      <Nav />
-      <Parallax strength={-200} bgImage={require('./assets/bg2.jpg')} blur={{min:-15, max:15}}>
-          <About />
-      </Parallax>
-      <Parallax strength={-200} bgImage={require('./assets/bg.jpg')} blur={{min:-15, max:15}}>
-         <Experience />
-      </Parallax>
-      <Parallax strength={-200} bgImage={require('./assets/bg2.jpg')} blur={{min:-15, max:15}}>
-          <Portfolio />
-      </Parallax>
-      <Parallax strength={-200} bgImage={require('./assets/bg.jpg')} blur={{min:-15, max:15}}>
-          <Contact />
-      </Parallax>
-      <Footer />
-     
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </Router>
     </>
   );
 };

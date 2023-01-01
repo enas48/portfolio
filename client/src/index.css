@@ -17,7 +17,7 @@
    --transition: all 400ms ease;
 }
 ::-webkit-scrollbar{
-    /* display: none; */
+    display: none;
 }
 html{scroll-behavior: smooth;}
 body{

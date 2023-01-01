@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/UserModel')
-
+const HttpError = require("./errorMiddleware");
 const protect = async(req,res,next) => {
 let token;
     try {
@@ -12,10 +12,12 @@ let token;
         req.user = await User.findById(decoded.id).select('-password');
         next();
     } catch(err){
-        res.status(401).json({mesaage:'Not authorized'}) 
+        const error = new HttpError('Not authorized', 401);
+        return next(error);
     }
 if(!token){
-    res.status(401).json({mesaage:'Not authorized, no token'})  
+    const error = new HttpError('Not authorized, no token' , 401);
+    return next(error);
 }
 }
 module.exports = {protect}

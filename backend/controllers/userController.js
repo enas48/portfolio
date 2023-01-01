@@ -1,20 +1,24 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/UserModel");
-
+const HttpError = require("../middleware/errorMiddleware");
 // @desc create user
 //@route POST /users
 //@access public
-const registerUser = async (req, res) => {
+const registerUser = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
-      res.status(400).json({ error: "Please fill all fields" });
+      const error = new HttpError("Please fill all fields" , 400);
+      return next(error);
+
     } else {
         //check if user exist
         const userExist = await User.findOne({email});
         if(userExist){
-            res.status(400).json({ error: "User already exists" });
+          const error = new HttpError("User already exists" , 400);
+          return next(error);
+          
         }else{
             //hash password
             const salt = await bcrypt.genSalt(10);
@@ -29,20 +33,22 @@ const registerUser = async (req, res) => {
                  token:generateToken(user._id)
                 }, message: "Register user" });
             }else{
-                res.status(400).json({ error:'invaild user data' });    
+              const error = new HttpError('invaild user data' , 400);
+              return next(error);
             }
         }
     }
  }
   catch (err) {
-    res.status(500).json({ error: err.message });
+    const error = new HttpError( err.message , 500);
+    return next(error);
   }
 };
 
 // @desc login user
 //@route POST /users/login
 //@access public
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   try {
     const {email, password} = req.body;
           //check if user exist
@@ -55,22 +61,25 @@ const loginUser = async (req, res) => {
                  email:user.email,
                  token:generateToken(user._id)}, message: "login user" });
           }else{
-            res.status(400).json({ error: 'invaild credentials' });
+            const error = new HttpError('invaild credentials'  , 400);
+            return next(error);
           }
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    const error = new HttpError( err.message , 500);
+    return next(error);
   }
 };
 
 // @desc get user
 //@route GET /users/:id
 //@access private
-const getUser = async (req, res) => {
+const getUser = async (req, res, next) => {
   try {
     const {_id, username, email} = await User.findById(req.user.id) 
     res.status(200).json({id:_id, username, email, message: "user data" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    const error = new HttpError( err.message , 500);
+    return next(error);
   }
 };
 

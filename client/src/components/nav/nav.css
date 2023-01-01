@@ -1,34 +1,87 @@
 nav {
     background: var(--bg-color-varient);
-    display: flex;
-    width: max-content;
     padding: 0.7rem 1.7rem;
     gap: 1rem;
     z-index: 2;
     position: fixed;
-    bottom: 2rem;
-    transform: translateX(-50%);
-    border-radius: 3rem;
-    left: 50%;
+    height: 60px;
+    top: 0;
+    width: 100%;
     box-shadow: 2px 2px 7px -3px var(--color-primary);
 }
 
+.menu {
+    display: flex;
+    justify-content: space-between;
+    transition: ease-in 0.5s ;
+}
+
+.hamburger {
+    background: none;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    position: absolute;
+    right: 25px;
+    display: none;
+}
+.hamburger:hover {
+   color:  var(--color-white) !important;
+  }
+  .show-ipad{
+    display: none;
+  }
+  @media screen and (max-width: 768px) {
+    .show-ipad{
+        display: block;
+      }
+    .hamburger {
+        display: block;
+      z-index: 2;
+      }
+      .menu{
+        /* display: block; */
+        transform: translatex(100%);
+      }
+   
+      .menu.active{
+        transform: translatex(0);
+      }
+      .menu {
+        position: fixed;
+        top: 60px;
+        padding-top: 20px;
+        left: 0;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background-color: var(--bg-color-varient);
+    }
+    .menu > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu-link{
+        display: none!important;
+        }
+  }
 nav a {
     color: var(--color-primary) !important;
     transition: var(--transition);
     font-size: 1.1rem;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     padding: 0 0.5rem 0.2rem;
     cursor: pointer;
 }
 
 nav a.active {
     color: var(--color-white) !important;
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
 }
 
 nav a:hover {
-    color: var(--color-white) !important;
+    color: var(--color-whiter) !important;
 }
 
 .btn-outline {

@@ -1,14 +1,14 @@
 .contact-container {
     padding-bottom: 4rem;
 }
-form {
+.contact-container  form {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
     margin: auto;
 }
-input,
-textarea {
+.contact-container input,
+.contact-container textarea {
     width: 100%;
     padding: 1.5rem;
     border-radius: 0.5rem;
