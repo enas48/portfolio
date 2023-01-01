@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 
-connectDB();
+
 const app = express();
 
 app.use(express.json());
@@ -15,6 +15,7 @@ const userRouter = require('./routes/userRoutes');
 app.get('/', (req, res)=>{
     res.send('hi');
 })
+connectDB();
 // Curb Cores Error by adding a header here
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
