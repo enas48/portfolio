@@ -17,5 +17,11 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.2",
     "nodemon": "^2.0.20"
-  }
+  },
+  "builds": [
+    {
+      "src": "package.json", 
+      "use": "vercel-sapper"
+    }
+  ]
 }
