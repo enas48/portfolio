@@ -15,7 +15,7 @@ const userRouter = require('./routes/userRoutes');
 app.get('/', (req, res)=>{
     res.send('hi');
 })
-connectDB();
+// connectDB();
 // Curb Cores Error by adding a header here
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
