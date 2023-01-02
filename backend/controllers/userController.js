@@ -31,7 +31,7 @@ const registerUser = async (req, res, next) => {
                  username:user.username,
                  email:user.email,
                  token:generateToken(user._id)
-                }, message: "Register user" });
+                }, message: "Account Created Successfully" });
             }else{
               const error = new HttpError('invaild user data' , 400);
               return next(error);
@@ -59,9 +59,9 @@ const loginUser = async (req, res, next) => {
                 _id:user.id,
                  username:user.username,
                  email:user.email,
-                 token:generateToken(user._id)}, message: "login user" });
+                 token:generateToken(user._id)}, message: "logged in Successfully" , status:200});
           }else{
-            const error = new HttpError('invaild credentials'  , 400);
+            const error = new HttpError('Email or Password incorrect'  , 400);
             return next(error);
           }
   } catch (err) {
