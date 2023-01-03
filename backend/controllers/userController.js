@@ -59,6 +59,7 @@ const loginUser = async (req, res, next) => {
                 _id:user.id,
                  username:user.username,
                  email:user.email,
+                 isAdmin:user.isAdmin,
                  token:generateToken(user._id)}, message: "logged in Successfully" , status:200});
           }else{
             const error = new HttpError('Email or Password incorrect'  , 400);

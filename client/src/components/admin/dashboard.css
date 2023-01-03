@@ -1,0 +1,15 @@
+.dashboard-container{
+    display: flex;
+    margin-top: 60px;
+}
+.sidebar{
+    width: 16vw;
+    background: var(--bg-color-varient);
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.dashboard-content{
+    padding: 20px 40px;
+}

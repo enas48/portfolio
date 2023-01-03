@@ -6,13 +6,20 @@ import { Register } from "./components/register/register";
 import { Login } from "./components/login/login";
 import  ProtectedRoute  from "./components/helpers/protectedRoute";
 import { Dashboard } from "./components/admin/dashboard";
+import { AddProject } from "./components/admin/addProject";
+import { AllProjects } from "./components/admin/projects";
+import { EditProject } from "./components/admin/editProject";
+
 export const App = () => {
+
   //check jwt token
   const token = localStorage.getItem("token");
   if (token) {
     setAuthToken(token);
   }
+
   return (
+ 
     <>
       <Router>
         <Routes>
@@ -24,11 +31,17 @@ export const App = () => {
                 <Dashboard />
               </ProtectedRoute>
             }
-          />
+          >
+              <Route path='addproject' element={<AddProject />} /> {/*A nested route!*/}
+              <Route path='allprojects' element={<AllProjects />} /> {/*A nested route!*/}
+              <Route path='editproject/:id' element={<EditProject />} /> {/*A nested route!*/} 
+            </Route>
+       
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Routes>
       </Router>
     </>
+
   );
 };

@@ -1,14 +1,13 @@
 import { React, useState } from "react";
 import "./nav.css";
-import { useAuthContext } from "../helpers/useAuthContext";
+
 import { Link as LinkScroll } from "react-scroll";
 import { Link as LinkRouter } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Navigate } from "react-router-dom";
 
-export const Nav = (props) => {
+export const AuthNav = (props) => {
   const [isNavActive, setNav] = useState(false);
-  const { user } = useAuthContext();
   const handleLogout = () => {
     localStorage.clear();
     return <Navigate replace to="/" />;
@@ -73,19 +72,7 @@ export const Nav = (props) => {
               </LinkScroll>
             </>
           ) : (
-            <>
             <LinkRouter to="/">Home</LinkRouter>
-            {user?.isAdmin==="true" && (
-            <LinkRouter
-              to="/dashboard"
-              onClick={() => {
-                setNav(!isNavActive);
-              }}
-            >
-              Dashboard
-            </LinkRouter>
-          )}
-          </>
           )}
         </div>
         <div>
@@ -98,31 +85,10 @@ export const Nav = (props) => {
           >
             Home
           </LinkRouter>
-    
-          {user ? (
-            <button className="btn" onClick={handleLogout}>
-              Logout
-            </button>
-          ) : (
-            <>
-              <LinkRouter
-                to="/register"
-                onClick={() => {
-                  setNav(!isNavActive);
-                }}
-              >
-                Register
-              </LinkRouter>
-              <LinkRouter
-                to="/login"
-                onClick={() => {
-                  setNav(!isNavActive);
-                }}
-              >
-                Login
-              </LinkRouter>
-            </>
-          )}
+
+          <button className="btn" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </div>
     </nav>

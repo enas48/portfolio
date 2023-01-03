@@ -5,9 +5,12 @@ import MessageModal from "../uielements/messageModal";
 import { RiUserFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import axios from 'axios';
+import axios from "axios";
 import { setAuthToken } from "../helpers/setAuthToken";
+import { useAuthContext } from "../helpers/useAuthContext";
+import { Navigate } from "react-router-dom";
 const appurl = "http://localhost:5000";
+
 export const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -17,35 +20,44 @@ export const Register = () => {
   const [massage, setMassage] = useState({ text: null, error: false });
   const { username, email, password } = formData;
 
+  //check if user already loggedin
+  const { user } = useAuthContext();
+  console.log(user);
+  if (user) {
+    return <Navigate replace to="/" />;
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const user = { username, email, password };
     setMassage({ text: null, error: false });
-    axios.post(appurl + "/users/login", user)
-    .then(response => {
-      console.log(response);
-      if (response.ok) {
+    axios
+      .post(appurl + "/users", user)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
           //get token from response
-     const token  =  response.data.token;
+          const token = response.data.data.token;
 
-     //set JWT token to local
-     localStorage.setItem("token", token);
-   //set token to axios common header
-   setAuthToken(token);
+          //set JWT token to local
+          localStorage.setItem("token", token);
+          //set token to axios common header
+          setAuthToken(token);
 
-        setMassage({ text: response.message });
-        setFormData({
-          username:"",
-          email: "",
-          password: "",
-        });
-      }
-
-      if (!response.ok) {
-        throw new Error(response.message);
-      }
-    }).catch (err=> setMassage({ text: err.message || "something want wrong", error: true }));
-    
+          setMassage({ text: response.data.message });
+          setFormData({
+            username: "",
+            email: "",
+            password: "",
+          });
+        }
+      })
+      .catch((err) =>
+        setMassage({
+          text: err.response.data.message || "something want wrong",
+          error: true,
+        })
+      );
   };
 
   const onChange = (e) => {

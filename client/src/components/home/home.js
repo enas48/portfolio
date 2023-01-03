@@ -7,10 +7,12 @@ import { Header } from "../header/header";
 import { Nav } from "../nav/nav";
 import { Portfolio } from "../portfolio/portfolio";
 import { Parallax } from "react-parallax";
-export const Home = () => {
+export const Home = (props) => {
+
+
   return (
     <>
-          <Nav home="true" />
+     <Nav home="true"  />
           <div>
       <Parallax strength={-200} bgImage={require('../../assets/bg.jpg')} blur={{min:-15, max:15}}>
         <Header />
