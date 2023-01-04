@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Nav } from "../nav/nav";
+import { AuthNav } from "../nav/authnav";
 import { Navigate } from "react-router-dom";
 import "./dashboard.css";
 import { Outlet, Link } from "react-router-dom";
@@ -12,7 +12,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <Nav />
+      <AuthNav />
       <div className="dashboard-container">
         <div className="sidebar">  
         <Link to="/dashboard/allprojects">All Projects</Link>

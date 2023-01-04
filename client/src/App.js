@@ -9,7 +9,7 @@ import { Dashboard } from "./components/admin/dashboard";
 import { AddProject } from "./components/admin/addProject";
 import { AllProjects } from "./components/admin/projects";
 import { EditProject } from "./components/admin/editProject";
-
+import { AuthProvider } from "./components/helpers/authProvider";
 export const App = () => {
 
   //check jwt token
@@ -19,7 +19,8 @@ export const App = () => {
   }
 
   return (
- 
+    
+    <AuthProvider>
     <>
       <Router>
         <Routes>
@@ -42,6 +43,6 @@ export const App = () => {
         </Routes>
       </Router>
     </>
-
+    </AuthProvider>
   );
 };

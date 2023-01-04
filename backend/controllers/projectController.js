@@ -7,7 +7,7 @@ const HttpError = require("../middleware/errorMiddleware");
 const getProjects = async (req, res, next) => {
   try {
     const projects = await projectService.getAllProjects();
-    res.status(200).json({ data: projects, message: "Get projects" });
+    res.status(200).json({ projects: projects, message: "Get projects" });
   } catch (err) {
     const error = new HttpError( err.message , 500);
     return next(error);
@@ -20,7 +20,7 @@ const createProject = async (req, res, next) => {
   try {
     const {title, url, demo, image} = req.body
     const project = await projectService.createProject({title, url, demo, image, user:req.user.id});
-    res.status(200).json({data: project, message: "Create project" });
+    res.status(200).json({project: project, message: "Create project" });
   } catch (err) {
     const error = new HttpError( err.message , 500);
     return next(error);
@@ -38,7 +38,7 @@ const getProjectById = async (req, res, next) => {
       return next(error);
      
     } else{
-    res.status(200).json({data: project, message: `find project ${req.params.id}` });
+    res.status(200).json({project: project, message: `find project ${req.params.id}` });
     } 
       } catch (err) {
         const error = new HttpError( err.message , 500);
@@ -67,7 +67,7 @@ const updateProject = async (req, res, next) => {
       return next(error);
     }
     const updatedProject = await projectService.updateProject(req.params.id, req.body);
-    res.status(200).json({ data:updatedProject, message: `update project ${req.params.id}` });
+    res.status(200).json({ project:updatedProject, message: `update project ${req.params.id}` });
     }
   } catch (err) {
     const error = new HttpError( err.message , 500);

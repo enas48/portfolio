@@ -1,17 +1,29 @@
-import { React, useState } from "react";
+import { React, useState ,useEffect} from "react";
 import "./nav.css";
 import { useAuthContext } from "../helpers/useAuthContext";
 import { Link as LinkScroll } from "react-scroll";
 import { Link as LinkRouter } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Nav = (props) => {
   const [isNavActive, setNav] = useState(false);
   const { user } = useAuthContext();
+  const navigate = useNavigate();
+  console.log(user)
+
+  const [loggedin,setloggedin]=useState(false);
+  useEffect(() => {
+    const token =localStorage.getItem('token');
+    if(token){
+      setloggedin(true);
+    }
+
+  }, []);
   const handleLogout = () => {
     localStorage.clear();
-    return <Navigate replace to="/" />;
+    setloggedin(false)
+    navigate('../', { replace: true })
   };
   return (
     <nav>
@@ -75,16 +87,7 @@ export const Nav = (props) => {
           ) : (
             <>
             <LinkRouter to="/">Home</LinkRouter>
-            {user?.isAdmin==="true" && (
-            <LinkRouter
-              to="/dashboard"
-              onClick={() => {
-                setNav(!isNavActive);
-              }}
-            >
-              Dashboard
-            </LinkRouter>
-          )}
+       
           </>
           )}
         </div>
@@ -98,8 +101,17 @@ export const Nav = (props) => {
           >
             Home
           </LinkRouter>
-    
-          {user ? (
+          {loggedin && user?.isAdmin==="true" && (
+            <LinkRouter
+              to="/dashboard"
+              onClick={() => {
+                setNav(!isNavActive);
+              }}
+            >
+              Dashboard
+            </LinkRouter>
+          )}
+          {loggedin ? (
             <button className="btn" onClick={handleLogout}>
               Logout
             </button>

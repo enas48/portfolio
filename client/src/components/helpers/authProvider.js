@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     const admin = localStorage.getItem('admin');
     if (token ) {
-      setUser({loggedin: true, isAdmin:admin });
+      setUser({loggedin:true, isAdmin:admin });
     }
   }, []);
   return (

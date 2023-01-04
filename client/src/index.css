@@ -105,7 +105,12 @@ img{
     border: 0;
     -webkit-appearance: none;
   }
-  
+  .btn-danger{
+    color: var(--color-white)!important;
+  }
+  .btn-danger:hover{
+    color: red!important;
+  }
 /*---------------media queries-----------------*/
 @media screen and (max-width:1024px) {
     section{
