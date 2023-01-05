@@ -38,11 +38,12 @@ export const Login = () => {
           //get token from response
           const token = response.data.data.token;
           const admin = response.data.data.isAdmin;
+          const userId = response.data.data.id;
           console.log(response);
           //set JWT token to local
           localStorage.setItem("token", token);
           localStorage.setItem("admin", admin);
-
+          localStorage.setItem('id', userId);
           //set token to axios common header
           setAuthToken(token);
 

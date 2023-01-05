@@ -6,8 +6,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const admin = localStorage.getItem('admin');
+    const userId = localStorage.getItem('id');
     if (token ) {
-      setUser({loggedin:true, isAdmin:admin });
+      setUser({loggedin:true, isAdmin:admin, userId:userId });
     }
   }, []);
   return (
