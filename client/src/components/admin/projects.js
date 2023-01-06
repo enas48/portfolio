@@ -3,7 +3,7 @@ import { Navigate,Link } from "react-router-dom";
 import axios from "axios";
 import "../portfolio/portfolio.css"
 // const appurl = "http://localhost:8000";
-const appurl ="https://portfolio-backend-snowy-delta.vercel.app/";
+const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const AllProjects = () => {
     const[projects, setProjects] = useState([]);

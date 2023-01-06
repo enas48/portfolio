@@ -10,7 +10,7 @@ import { setAuthToken } from "../helpers/setAuthToken";
 import { useAuthContext } from "../helpers/useAuthContext";
 import { Navigate } from "react-router-dom";
 // const appurl = "http://localhost:8000";
-const appurl ="https://portfolio-backend-snowy-delta.vercel.app/";
+const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const Register = () => {
   const [formData, setFormData] = useState({
