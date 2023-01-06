@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./portfolio.css";
 import axios from "axios";
+// const appurl = "http://localhost:8000";
+const appurl ="https://portfolio-backend-snowy-delta.vercel.app/";
 
 export const Portfolio = () => {
-  const appurl = "http://localhost:8000";
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     const fetchProjects = async () => {

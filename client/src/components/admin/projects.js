@@ -2,10 +2,10 @@ import  React, { useState , useEffect} from "react";
 import { Navigate,Link } from "react-router-dom";
 import axios from "axios";
 import "../portfolio/portfolio.css"
+// const appurl = "http://localhost:8000";
+const appurl ="https://portfolio-backend-snowy-delta.vercel.app/";
 
 export const AllProjects = () => {
-
-    const appurl = "http://localhost:8000";
     const[projects, setProjects] = useState([]);
  
     useEffect(() => {

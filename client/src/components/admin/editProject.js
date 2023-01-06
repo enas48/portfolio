@@ -5,7 +5,8 @@ import MessageModal from "../uielements/messageModal";
 import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
-const appurl = "http://localhost:8000";
+// const appurl = "http://localhost:8000";
+const appurl ="https://portfolio-backend-snowy-delta.vercel.app/";
 
 export const EditProject = () => {
   const { id } = useParams();
