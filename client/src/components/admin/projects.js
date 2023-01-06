@@ -1,11 +1,11 @@
 import  React, { useState , useEffect} from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate,Link } from "react-router-dom";
 import axios from "axios";
 import "../portfolio/portfolio.css"
 
 export const AllProjects = () => {
 
-    const appurl = "http://localhost:5000";
+    const appurl = "http://localhost:8000";
     const[projects, setProjects] = useState([]);
  
     useEffect(() => {
@@ -46,14 +46,8 @@ export const AllProjects = () => {
             </div>
             <h4>{item.title}</h4>
             <div className="portfolio-btn">
-              <a
-                href={item.url}
-                className="btn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Edit
-              </a>
+            <Link className="btn btn-primary" to={`edit/${item._id}`}>Edit</Link>
+              
               <a
                 href={item.demo}
                 className="btn btn-danger "

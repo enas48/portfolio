@@ -3,13 +3,25 @@
     margin-top: 60px;
 }
 .sidebar{
-    width: 16vw;
+    width: 260px;
     background: var(--bg-color-varient);
-    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
     padding: 20px;
     display: flex;
     flex-direction: column;
+
+}
+@media screen and (max-width:678px) {
+    .sidebar{
+        display: none;
+    }
 }
 .dashboard-content{
     padding: 20px 40px;
+    margin: 0 auto;
+}
+.createproject{
+    height: auto!important;
+    margin-top: 30px;
 }

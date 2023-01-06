@@ -111,6 +111,10 @@ img{
   .btn-danger:hover{
     color: red!important;
   }
+  .btn.disabled, .btn:disabled{
+    border: none;
+    opacity: 0.8;
+  }
 /*---------------media queries-----------------*/
 @media screen and (max-width:1024px) {
     section{

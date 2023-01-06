@@ -1,21 +1,12 @@
-import React from 'react';
-import {Navigate } from 'react-router-dom';
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
+const ProtectedRoute = ({ isAllowed, children }) => {
+  
+  if (!isAllowed) {
+    return <Navigate to="/" replace />;
+  }
 
-const ProtectedRoute = ({  children }) => {
-    function hasJWT() {
-        let flag = false;
-  
-        //check user has JWT token
-        localStorage.getItem("token") ? flag=true : flag=false
-       
-        return flag
-    }
-  
-    if (!hasJWT()) {
-      return <Navigate to="/" replace />;
-    }
-  
-    return children;
-  };
-  export default ProtectedRoute;
+  return children ? children : <Outlet />;
+};
+export default ProtectedRoute;

@@ -76,8 +76,8 @@ const loginUser = async (req, res, next) => {
 //@access private
 const getUser = async (req, res, next) => {
   try {
-    const {_id, username, email} = await User.findById(req.user.id) 
-    res.status(200).json({id:_id, username, email, message: "user data" });
+    const {_id, username, email, isAdmin} = await User.findById(req.user.id) 
+    res.status(200).json({id:_id, username, email,isAdmin, message: "user data" });
   } catch (err) {
     const error = new HttpError( err.message , 500);
     return next(error);

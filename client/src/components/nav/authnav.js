@@ -23,7 +23,7 @@ export const AuthNav = (props) => {
   const handleLogout = () => {
     localStorage.clear();
     setloggedin(false)
-    navigate('../login', { replace: true })
+    navigate('/login', { replace: true })
  
   };
   return (

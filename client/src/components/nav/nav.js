@@ -1,6 +1,6 @@
-import { React, useState ,useEffect} from "react";
+import { React, useState, useContext } from "react";
 import "./nav.css";
-import { useAuthContext } from "../helpers/useAuthContext";
+import AuthContext from "../helpers/authContext";
 import { Link as LinkScroll } from "react-scroll";
 import { Link as LinkRouter } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -8,22 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 export const Nav = (props) => {
   const [isNavActive, setNav] = useState(false);
-  const { user } = useAuthContext();
+  const { userId, isAdmin, logout } = useContext(AuthContext);
+  // const { user } = useAuthContext();
   const navigate = useNavigate();
-  console.log(user)
 
-  const [loggedin,setloggedin]=useState(false);
-  useEffect(() => {
-    const token =localStorage.getItem('token');
-    if(token){
-      setloggedin(true);
-    }
 
-  }, []);
   const handleLogout = () => {
-    localStorage.clear();
-    setloggedin(false)
-    navigate('../login', { replace: true })
+    logout();
+    navigate("/login", { replace: true });
   };
   return (
     <nav>
@@ -83,12 +75,13 @@ export const Nav = (props) => {
               >
                 Contact
               </LinkScroll>
+         
             </>
           ) : (
             <>
-            <LinkRouter to="/">Home</LinkRouter>
-       
-          </>
+              <LinkRouter to="/">Home</LinkRouter>
+        
+            </>
           )}
         </div>
         <div>
@@ -101,7 +94,7 @@ export const Nav = (props) => {
           >
             Home
           </LinkRouter>
-          {loggedin && user?.isAdmin==="true" && (
+          { isAdmin === 'true'&& (
             <LinkRouter
               to="/dashboard"
               onClick={() => {
@@ -111,30 +104,30 @@ export const Nav = (props) => {
               Dashboard
             </LinkRouter>
           )}
-          {loggedin ? (
+          {userId ? (
             <button className="btn" onClick={handleLogout}>
               Logout
             </button>
           ) : (
-            <>
-              <LinkRouter
-                to="/register"
-                onClick={() => {
-                  setNav(!isNavActive);
-                }}
-              >
-                Register
-              </LinkRouter>
-              <LinkRouter
-                to="/login"
-                onClick={() => {
-                  setNav(!isNavActive);
-                }}
-              >
-                Login
-              </LinkRouter>
-            </>
-          )}
+          <>
+            <LinkRouter
+              to="/register"
+              onClick={() => {
+                setNav(!isNavActive);
+              }}
+            >
+              Register
+            </LinkRouter>
+            <LinkRouter
+              to="/login"
+              onClick={() => {
+                setNav(!isNavActive);
+              }}
+            >
+              Login
+            </LinkRouter>
+          </>
+           )} 
         </div>
       </div>
     </nav>

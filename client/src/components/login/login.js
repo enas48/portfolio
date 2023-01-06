@@ -6,13 +6,13 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import axios from "axios";
 import { setAuthToken } from "../helpers/setAuthToken";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useAuthContext } from "../helpers/useAuthContext";
-import { Navigate } from "react-router-dom";
-const appurl = "http://localhost:5000";
+const appurl = "http://localhost:8000";
 
-export const Login = () => {
+export const Login = (props) => {
   let navigate = useNavigate();
+  const [disabled, setDisabled] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,23 +30,17 @@ export const Login = () => {
     e.preventDefault();
     const user = { email, password };
     setMassage({ text: null, error: false });
+    setDisabled(true);
     axios
       .post(appurl + "/users/login", user)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          //get token from response
+          setDisabled(false);
+          props.onLogin(response.data.data);
           const token = response.data.data.token;
           const admin = response.data.data.isAdmin;
-          const userId = response.data.data.id;
-          console.log(response);
-          //set JWT token to local
-          localStorage.setItem("token", token);
-          localStorage.setItem("admin", admin);
-          localStorage.setItem('id', userId);
-          //set token to axios common header
           setAuthToken(token);
-
           setMassage({ text: response.data.message });
           setFormData({
             email: "",
@@ -54,17 +48,18 @@ export const Login = () => {
           });
 
           if (admin) {
-            return navigate("/dashboard");
+            return navigate("/dashboard", { replace: true });
           } else {
-            return navigate("/");
+            return navigate("/", { replace: true });
           }
         }
       })
-      .catch((err) =>
+      .catch((err) =>{
+        setDisabled(false);
         setMassage({
           text: err.response.data.message || "something want wrong",
           error: true,
-        })
+        })}
       );
   };
   const onChange = (e) => {
@@ -110,7 +105,7 @@ export const Login = () => {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" disabled={disabled} className="btn btn-primary">
               Login
             </button>
           </form>

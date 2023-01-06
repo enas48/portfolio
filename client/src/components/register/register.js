@@ -9,7 +9,7 @@ import axios from "axios";
 import { setAuthToken } from "../helpers/setAuthToken";
 import { useAuthContext } from "../helpers/useAuthContext";
 import { Navigate } from "react-router-dom";
-const appurl = "http://localhost:5000";
+const appurl = "http://localhost:8000";
 
 export const Register = () => {
   const [formData, setFormData] = useState({

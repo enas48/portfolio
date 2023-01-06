@@ -1,18 +1,15 @@
-import { React, useState } from "react";
-import { AuthNav } from "../nav/authnav";
-import { Navigate } from "react-router-dom";
+import React  from "react";
+import { Nav } from "../nav/nav";
+
 import "./dashboard.css";
 import { Outlet, Link } from "react-router-dom";
 
 export const Dashboard = () => {
-  const admin = localStorage.getItem("admin");
-  if (admin === "false") {
-    return <Navigate replace to="/" />;
-  }
+ 
 
   return (
     <>
-      <AuthNav />
+      <Nav />
       <div className="dashboard-container">
         <div className="sidebar">  
         <Link to="/dashboard/allprojects">All Projects</Link>
@@ -24,4 +21,5 @@ export const Dashboard = () => {
       </div>
     </>
   );
+  
 };

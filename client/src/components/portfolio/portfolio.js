@@ -1,16 +1,13 @@
-import  React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./portfolio.css";
-import img1 from "../../assets/p1.png";
 import axios from "axios";
 
-
 export const Portfolio = () => {
-  const appurl = "http://localhost:5000";
-  const[projects, setProjects] = useState([]);
+  const appurl = "http://localhost:8000";
+  const [projects, setProjects] = useState([]);
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-
         const result = await axios(`${appurl}/projects`, {
           headers: {
             Accept: "application/json",
@@ -19,17 +16,14 @@ export const Portfolio = () => {
         //get user
         const data = result.data.projects;
         setProjects(data);
-        console.log(data); 
-     
       } catch (err) {
         console.log(err);
- 
       }
     };
 
     fetchProjects();
-}, []);
-  // const data = [
+  }, []);
+
   //   {
   //     id: 1,
   //     image: img1,
