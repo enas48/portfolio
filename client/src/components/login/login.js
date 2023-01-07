@@ -9,7 +9,7 @@ import { setAuthToken } from "../helpers/setAuthToken";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useAuthContext } from "../helpers/useAuthContext";
 // const appurl = "http://localhost:8000";
-const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
+// const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const Login = (props) => {
   let navigate = useNavigate();
@@ -33,7 +33,7 @@ export const Login = (props) => {
     setMassage({ text: null, error: false });
     setDisabled(true);
     axios
-      .post(appurl + "/users/login", user)
+      .post(process.env.REACT_APP_APP_URL + "/users/login", user)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {

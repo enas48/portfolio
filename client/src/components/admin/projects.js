@@ -3,7 +3,7 @@ import { Navigate,Link } from "react-router-dom";
 import axios from "axios";
 import "../portfolio/portfolio.css"
 // const appurl = "http://localhost:8000";
-const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
+// const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const AllProjects = () => {
     const[projects, setProjects] = useState([]);
@@ -12,7 +12,7 @@ export const AllProjects = () => {
       const fetchProjects = async () => {
         try {
   
-          const result = await axios(`${appurl}/projects`, {
+          const result = await axios(`${process.env.REACT_APP_APP_URL}/projects`, {
             headers: {
               Accept: "application/json",
             },

@@ -6,7 +6,7 @@ import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
 // const appurl = "http://localhost:8000";
-const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
+// const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const EditProject = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ export const EditProject = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const result = await axios(`${appurl}/projects/${id}`, {
+        const result = await axios(`${process.env.REACT_APP_APP_URL}/projects/${id}`, {
           headers: {
             Accept: "application/json",
           },
@@ -65,7 +65,7 @@ export const EditProject = () => {
     formData.append("image", image);
     setDisabled(true);
     axios
-      .put(appurl + "/projects/" + id, formData)
+      .put(process.env.REACT_APP_APP_URL + "/projects/" + id, formData)
       .then((response) => {
         if (response.status === 200) {
           setDisabled(false);

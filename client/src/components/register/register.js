@@ -9,8 +9,8 @@ import axios from "axios";
 import { setAuthToken } from "../helpers/setAuthToken";
 import { useAuthContext } from "../helpers/useAuthContext";
 import { Navigate } from "react-router-dom";
-// const appurl = "http://localhost:8000";
-const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
+// // const appurl = "http://localhost:8000";
+// const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ export const Register = () => {
     const user = { username, email, password };
     setMassage({ text: null, error: false });
     axios
-      .post(appurl + "/users", user)
+      .post(process.env.REACT_APP_APP_URL + "/users", user)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
