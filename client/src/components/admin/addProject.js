@@ -76,7 +76,7 @@ export const AddProject = () => {
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
       <h3>Add project</h3>
       <div className="register-container createproject">
-        <div className="form-container col-12 ">
+        <div className="form-container col-12  ">
           <form onSubmit={onSubmit} method="post" encType="multipart/form-data">
             <input
               type="text"

@@ -2,7 +2,7 @@ nav {
     background: var(--bg-color-varient);
     padding: 0.7rem 1.7rem;
     gap: 1rem;
-    z-index: 2;
+    z-index: 4;
     position: fixed;
     height: 60px;
     top: 0;
@@ -34,12 +34,11 @@ nav {
     .show-ipad{
         display: block;
       }
-    .hamburger {
+    /* .hamburger {
         display: block;
       z-index: 2;
       }
       .menu{
-        /* display: block; */
         transform: translatex(100%);
       }
    
@@ -61,7 +60,7 @@ nav {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
+    } */
     .menu-link{
         display: none!important;
         }

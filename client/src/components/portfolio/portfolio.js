@@ -79,6 +79,7 @@ export const Portfolio = () => {
             <div className="portfolio-item-image">
               <img src={item.image} alt="" />
             </div>
+            <div className="overlay">
             <h4>{item.title}</h4>
             <div className="portfolio-btn">
               <a
@@ -97,6 +98,7 @@ export const Portfolio = () => {
               >
                 Live Demo
               </a>
+            </div>
             </div>
           </div>
         ))}

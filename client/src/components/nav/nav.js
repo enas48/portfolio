@@ -4,14 +4,15 @@ import AuthContext from "../helpers/authContext";
 import { Link as LinkScroll } from "react-scroll";
 import { Link as LinkRouter } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 export const Nav = (props) => {
+  const  {pathname} = useLocation();
   const [isNavActive, setNav] = useState(false);
   const { userId, isAdmin, logout } = useContext(AuthContext);
   // const { user } = useAuthContext();
   const navigate = useNavigate();
-
 
   const handleLogout = () => {
     logout();
@@ -79,12 +80,15 @@ export const Nav = (props) => {
             </>
           ) : (
             <>
-              <LinkRouter to="/">Home</LinkRouter>
+             { !pathname.includes('/dashboard') &&(
+              <LinkRouter to="/">Home</LinkRouter>)}
         
             </>
           )}
         </div>
-        <div>
+        <div className="d-flex justify-content-between w-100 align-items-top">
+      { !pathname.includes('/dashboard') &&(
+          <div className="d-flex">
           <LinkRouter
             to="/"
             onClick={() => {
@@ -94,7 +98,7 @@ export const Nav = (props) => {
           >
             Home
           </LinkRouter>
-          { isAdmin === 'true'&& (
+          { isAdmin === 'true' && (
             <LinkRouter
               to="/dashboard"
               onClick={() => {
@@ -104,20 +108,22 @@ export const Nav = (props) => {
               Dashboard
             </LinkRouter>
           )}
+            </div>
+      )}
           {userId ? (
-            <button className="btn" onClick={handleLogout}>
+            <button className="btn ms-auto" onClick={handleLogout}>
               Logout
             </button>
           ) : (
           <>
-            <LinkRouter
+            {/* <LinkRouter
               to="/register"
               onClick={() => {
                 setNav(!isNavActive);
               }}
             >
               Register
-            </LinkRouter>
+            </LinkRouter> */}
             <LinkRouter
               to="/login"
               onClick={() => {

@@ -8,23 +8,32 @@ header{
 .header-container{
  text-align: center;  
  height: 100%;
+ width: 85%;
  position: relative;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+ text-align: left;
+ gap: 5rem;
 }
 .cv{
     margin-top: 2.5rem;
     display: flex;
     gap: 1rem;
-    justify-content: center;
+
 }
 .header-social{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.8rem;
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 40%;
     margin-left: 1rem;
+    z-index: 222;
+    font-size: 1.3rem;
 }
 .header-social a{
     color:var(--color-light);
@@ -38,12 +47,7 @@ header{
 .me{
     background: var(--color-primary);
     width: 22rem;
-    height: 30rem;
-    position: absolute;
-    left: calc(50% - 11rem);
     background-color:linear-gradient(var(--color-primary), transparent) ;
-    margin-top: 4rem;
-    border-radius: 12rem 12rem 0 0;
     overflow: hidden;
 }
 .scrol-down{
