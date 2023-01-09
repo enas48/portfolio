@@ -5,6 +5,7 @@ import axios from "axios";
 // const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const Portfolio = () => {
+  console.log(process.env.REACT_APP_APP_URL);
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     const fetchProjects = async () => {
@@ -74,7 +75,7 @@ export const Portfolio = () => {
       <h5>my Recent Work</h5>
       <h2>Portfolio</h2>
       <div className="container portfolio-container">
-        {projects.map((item) => (
+        {projects && projects.map((item) => (
           <div className="portfolio-item" key={item._id}>
             <div className="portfolio-item-image">
               <img src={item.image} alt="" />
