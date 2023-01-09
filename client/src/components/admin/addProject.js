@@ -3,13 +3,10 @@ import { Navigate } from "react-router-dom";
 import AuthContext from "../helpers/authContext";
 import MessageModal from "../uielements/messageModal";
 import axios from "axios";
-
 import "../register/register.css";
 import "./dashboard.css";
-// const appurl = "http://localhost:8000";
-// const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
+
 export const AddProject = () => {
-  console.log(process.env.REACT_APP_APP_URL);
   const [massage, setMassage] = useState({ text: null, error: false });
   const { userId } = useContext(AuthContext);
   const [image, setImage] = useState("");
@@ -103,7 +100,7 @@ export const AddProject = () => {
               required
             />
             <input type="file" name="image" onChange={onImageChange} />
-            <button type="submit" disabled={disabled} className="btn btn-primary">
+            <button type="submit" disabled={disabled} className="btn btn-primary btn-custom">
               Add project
             </button>
           </form>

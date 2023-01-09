@@ -13,6 +13,7 @@ app.use(express.urlencoded({extended:false}));
 
 const projectRouter = require('./routes/projectRoutes');
 const userRouter = require('./routes/userRoutes');
+const profileRouter = require('./routes/porfileRoutes');
 
 app.get('/', (req, res)=>{
     res.send('hi');
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 
 app.use('/projects',projectRouter );
 app.use('/users',userRouter );
+app.use('/profiles',profileRouter );
 
 //handling errors on routers
 app.use((error, req, res, next)=>{ 

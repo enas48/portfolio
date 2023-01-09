@@ -62,6 +62,11 @@ const updateProject = async (req, res, next) => {
       const error = new HttpError('project not found' , 400);
       return next(error);
     } else{
+      if (!userId.match(/^[0-9a-fA-F]{24}$/)) {
+        // Yes, it's a valid ObjectId, proceed with `findById` call.
+        const error = new HttpError('user not found' , 401);
+        return next(error);
+      }
     const user = await User.findById(userId);
     //check fpr  user 
     if(!user){
@@ -98,7 +103,7 @@ const deleteProject = async (req, res, next) => {
       return next(error);
     } else{
     const deletedProject = await projectService.deleteProject(req.params.id);
-    res.status(200).json({ message: `deleted project ${req.params.id}` });
+    res.status(200).json({ message: `project deleted successfully` });
   } 
   }catch (err) {
     const error = new HttpError( err.message , 500);

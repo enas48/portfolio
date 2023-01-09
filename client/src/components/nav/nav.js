@@ -111,7 +111,7 @@ export const Nav = (props) => {
             </div>
       )}
           {userId ? (
-            <button className="btn ms-auto" onClick={handleLogout}>
+            <button className="btn ms-auto btn-outline-danger" onClick={handleLogout}>
               Logout
             </button>
           ) : (

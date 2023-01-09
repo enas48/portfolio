@@ -6,46 +6,35 @@ import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
 
-export const EditProject = () => {
-  const { id } = useParams();
+
+export const EditProfile = (props) => {
+  const  id  = props.profile._id;
+  console.log(id);
   const [massage, setMassage] = useState({ text: null, error: false });
   const { userId } = useContext(AuthContext);
-  const [image, setImage] = useState("");
   const admin = localStorage.getItem("admin");
   const [disabled, setDisabled] = useState(false);
   const [data, setFormData] = useState({
-    title: "",
-    url: "",
-    demo: "",
     user: userId,
+    bio: "",
+    aboutme: "",
+    yearsOfExp: "",
+    frontendExperiences:[],
+    backendExperiences:[],
+    otherExperiences :[],
   });
 
   useEffect(() => {
-    const fetchProject = async () => {
-      try {
-        const result = await axios(`${process.env.REACT_APP_APP_URL}/projects/${id}`, {
-          headers: {
-            Accept: "application/json",
-          },
-        });
-        //get user
-        const data = result.data.project;
-        setFormData(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    setFormData(props.profile);
+    console.log(props.profile);
+   console.log(data);
+  }, []);
 
-    fetchProject();
-  }, [id]);
-
-  const { title, url, demo } = data;
+  const { bio, aboutme, yearsOfExp, frontendExperiences, backendExperiences, otherExperiences} = data;
   if (admin === "false") {
     return <Navigate replace to="/" />;
   }
-  const onImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -55,19 +44,16 @@ export const EditProject = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    for (var key in data) {
-      formData.append(key, data[key]);
-    }
-    formData.append("image", image);
+   
     setDisabled(true);
     axios
-      .put(process.env.REACT_APP_APP_URL + "/projects/" + id, formData)
+      .put(process.env.REACT_APP_APP_URL + "/profiles/" + id, data)
       .then((response) => {
         if (response.status === 200) {
           setDisabled(false);
           setMassage({ text: response.data.message });
           setFormData(response.data.project);
+          console.log(response.data);
         }
       })
       .catch((err) => {
@@ -85,38 +71,38 @@ export const EditProject = () => {
   return (
     <>
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
-      <h3>Edit project</h3>
+      <h3>Edit profile</h3>
       <div className="register-container createproject">
         <div className="form-container col-12 ">
-          <form onSubmit={onSubmit} method="post" encType="multipart/form-data">
+          <form onSubmit={onSubmit} method="post" >
+            <label htmlFor="">Bio</label>
             <input
               type="text"
-              value={title}
-              name="title"
-              placeholder="project title"
+              value={bio}
+              name="bio"
+              placeholder="Bio"
               onChange={onChange}
               required
             />
+              <label htmlFor="">About Me</label>
             <input
               type="text"
-              value={url}
-              name="url"
-              placeholder="project url"
+              value={aboutme}
+              name="aboutme"
+              placeholder="About me"
               onChange={onChange}
               required
             />
+              <label htmlFor="">years Of Experiences</label>
             <input
               type="text"
-              value={demo}
-              name="demo"
-              placeholder="project demo"
+              value={yearsOfExp}
+              name="yearsOfExp"
+              placeholder="years Of Experiences"
               onChange={onChange}
               required
             />
-            <input type="file" name="image" onChange={onImageChange} />
-            <div className="portfolio-item-image">
-              <img src={data.image} alt="" />
-            </div>
+          
             <button
               type="submit"
               disabled={disabled}

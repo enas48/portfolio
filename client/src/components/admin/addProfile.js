@@ -1,13 +1,12 @@
-import { React, useState, useContext, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { React, useState, useContext } from "react";
+import { Navigate } from "react-router-dom";
 import AuthContext from "../helpers/authContext";
 import MessageModal from "../uielements/messageModal";
 import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
 
-export const EditProject = () => {
-  const { id } = useParams();
+export const AddProfile = () => {
   const [massage, setMassage] = useState({ text: null, error: false });
   const { userId } = useContext(AuthContext);
   const [image, setImage] = useState("");
@@ -17,28 +16,8 @@ export const EditProject = () => {
     title: "",
     url: "",
     demo: "",
-    user: userId,
+    userId,
   });
-
-  useEffect(() => {
-    const fetchProject = async () => {
-      try {
-        const result = await axios(`${process.env.REACT_APP_APP_URL}/projects/${id}`, {
-          headers: {
-            Accept: "application/json",
-          },
-        });
-        //get user
-        const data = result.data.project;
-        setFormData(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchProject();
-  }, [id]);
-
   const { title, url, demo } = data;
   if (admin === "false") {
     return <Navigate replace to="/" />;
@@ -61,22 +40,29 @@ export const EditProject = () => {
     }
     formData.append("image", image);
     setDisabled(true);
+
     axios
-      .put(process.env.REACT_APP_APP_URL + "/projects/" + id, formData)
+      .post(process.env.REACT_APP_APP_URL + "/projects", formData)
       .then((response) => {
         if (response.status === 200) {
           setDisabled(false);
           setMassage({ text: response.data.message });
-          setFormData(response.data.project);
+          setFormData({
+            title: "",
+            url: "",
+            demo: "",
+            userId: userId,
+          });
+          setImage("");
         }
       })
-      .catch((err) => {
-        setDisabled(false);
+      .catch((err) =>{
+      setDisabled(false);
         setMassage({
           text: err.response.data.message || "something want wrong",
           error: true,
-        });
-      });
+        })}
+      );
   };
   const handleClear = () => {
     setMassage({ text: null, error: false });
@@ -85,9 +71,9 @@ export const EditProject = () => {
   return (
     <>
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
-      <h3>Edit project</h3>
+      <h3>Add project</h3>
       <div className="register-container createproject">
-        <div className="form-container col-12 ">
+        <div className="form-container col-12  ">
           <form onSubmit={onSubmit} method="post" encType="multipart/form-data">
             <input
               type="text"
@@ -114,15 +100,8 @@ export const EditProject = () => {
               required
             />
             <input type="file" name="image" onChange={onImageChange} />
-            <div className="portfolio-item-image">
-              <img src={data.image} alt="" />
-            </div>
-            <button
-              type="submit"
-              disabled={disabled}
-              className="btn btn-primary btn-custom"
-            >
-              Edit project
+            <button type="submit" disabled={disabled} className="btn btn-primary btn-custom">
+              Add project
             </button>
           </form>
         </div>

@@ -106,7 +106,7 @@ export const Login = (props) => {
                 required
               />
             </div>
-            <button type="submit" disabled={disabled} className="btn btn-primary">
+            <button type="submit" disabled={disabled} className="btn btn-primary btn-custom">
               Login
             </button>
           </form>

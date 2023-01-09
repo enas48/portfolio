@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineDashboard } from "react-icons/ai";
 import {AiOutlineProject} from 'react-icons/ai';
+import {BsPersonBoundingBox} from 'react-icons/bs';
+
 export default function Sidebar() {
   const [isNavActive, setNav] = useState(false);
   return (
@@ -14,7 +16,6 @@ export default function Sidebar() {
             onClick={() => {
               setNav(!isNavActive);
             }}
-    
           >
             Home
           </Link>
@@ -32,6 +33,10 @@ export default function Sidebar() {
         <Link to="/dashboard">
            <span className="sidebar-icon"  data-toggle="tooltip" data-placement="right" title="Dashboard"><AiOutlineDashboard/></span>
           <span className="sidebar-txt">Dashboard</span>
+        </Link>
+        <Link to="/dashboard/profile">
+           <span className="sidebar-icon"  data-toggle="tooltip" data-placement="right" title="Dashboard"><BsPersonBoundingBox/></span>
+          <span className="sidebar-txt">profile</span>
         </Link>
         <Link to="/dashboard/addproject">
         <span className="sidebar-icon" data-toggle="tooltip" data-placement="right" title="Projects"><AiOutlineProject/></span> 

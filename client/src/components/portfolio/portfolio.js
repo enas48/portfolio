@@ -5,7 +5,6 @@ import axios from "axios";
 // const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const Portfolio = () => {
-  console.log(process.env.REACT_APP_APP_URL);
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     const fetchProjects = async () => {
@@ -26,50 +25,7 @@ export const Portfolio = () => {
     fetchProjects();
   }, []);
 
-  //   {
-  //     id: 1,
-  //     image: img1,
-  //     title: "this is title",
-  //     github: "http",
-  //     demo: "http",
-  //   },
-  //   {
-  //     id: 2,
-  //     image: img1,
-  //     title: "this is title2",
-  //     github: "http",
-  //     demo: "http",
-  //   },
-  //   {
-  //     id: 3,
-  //     image: img1,
-  //     title: "this is title3",
-  //     github: "http",
-  //     demo: "http",
-  //   },
-  //   {
-  //     id: 4,
-  //     image: img1,
-  //     title: "this is title4",
-  //     github: "http",
-  //     demo: "http",
-  //   },
 
-  //   {
-  //     id: 5,
-  //     image: img1,
-  //     title: "this is title5",
-  //     github: "http",
-  //     demo: "http",
-  //   },
-  //   {
-  //     id: 6,
-  //     image: img1,
-  //     title: "this is title6",
-  //     github: "http",
-  //     demo: "http",
-  //   },
-  // ];
   return (
     <section id="portfolio">
       <h5>my Recent Work</h5>
@@ -85,7 +41,7 @@ export const Portfolio = () => {
             <div className="portfolio-btn">
               <a
                 href={item.url}
-                className="btn"
+                className="btn btn-custom"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -93,7 +49,7 @@ export const Portfolio = () => {
               </a>
               <a
                 href={item.demo}
-                className="btn btn-primary"
+                className="btn btn-primary btn-custom"
                 target="_blank"
                 rel="noreferrer"
               >

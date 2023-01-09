@@ -10,9 +10,11 @@ import { AddProject } from "./components/admin/addProject";
 import { AllProjects } from "./components/admin/projects";
 import { EditProject } from "./components/admin/editProject";
 import {DashboardIndex} from "./components/admin/dashboardindex";
+import { Profile } from "./components/admin/profile";
 import {Notfound} from "./components/notfoud/Notfound"
 
 import AuthContext from "./components/helpers/authContext";
+
 
 export const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -73,12 +75,10 @@ export const App = () => {
               }
             >
               <Route path="/dashboard" element={<DashboardIndex />} />
+              <Route path="Profile" element={<Profile />} />
               <Route path="addproject" element={<AddProject />} />
-              {/*A nested route!*/}
               <Route path="allprojects" element={<AllProjects />} />
-              {/*A nested route!*/}
               <Route path="edit/:id" element={<EditProject />} />
-              {/*A nested route!*/}
             </Route>
 
             <Route path="login" element={<Login onLogin={login} />} />

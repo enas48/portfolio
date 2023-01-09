@@ -1,9 +1,7 @@
 import  React, { useState , useEffect} from "react";
 import { Navigate,Link } from "react-router-dom";
 import axios from "axios";
-import "../portfolio/portfolio.css"
-// const appurl = "http://localhost:8000";
-// const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
+import "../portfolio/portfolio.css";
 
 export const AllProjects = () => {
     const[projects, setProjects] = useState([]);
@@ -46,7 +44,7 @@ export const AllProjects = () => {
             </div>
             <h4>{item.title}</h4>
             <div className="portfolio-btn">
-            <Link className="btn btn-primary" to={`edit/${item._id}`}>Edit</Link>
+            <Link className="btn btn-primary btn-custom" to={`edit/${item._id}`}>Edit</Link>
               
               <a
                 href={item.demo}

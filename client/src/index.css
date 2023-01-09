@@ -51,7 +51,7 @@ a {
 a:hover{
     color: var(--color-white);
 }
-.btn {
+ .btn-custom{
     color: var(--color-primary);
     border-radius: 0.4rem;
     cursor: pointer;
@@ -115,6 +115,16 @@ img{
     border: none;
     opacity: 0.8;
   }
+  .modal.show{
+    display: block;
+  }
+  .modal-body{
+    color: var(--bg-color);
+  }
+  label{
+    color: var(--color-primary);
+  }
+
 /*---------------media queries-----------------*/
 @media screen and (max-width:1024px) {
     section{

@@ -14,8 +14,8 @@ export const Header = () => {
         <h5 className='text-light'>Fullstack Developer</h5>
         <p>I like building a responsive and scalable web applications.</p>
         <div className='cv'>
-          <a href={Cv} download className='btn'>Download Cv</a>
-          <Link to='contact' smooth={true} className='btn btn-primary'>Let's Talk</Link>
+          <a href={Cv} download className='btn btn-custom'>Download Cv</a>
+          <Link to='contact' smooth={true} className='btn btn-primary btn-custom'>Let's Talk</Link>
         </div>
         <HeaderSocial/>
         </div>
@@ -26,7 +26,7 @@ export const Header = () => {
 
      
       </div>
-      <button className='btn btn-outline scroll-top' onClick={()=>{scroll.scrollToTop()}} ><BsArrowUpSquareFill/></button>
+      <button className='btn btn-outline scroll-top btn-custom' onClick={()=>{scroll.scrollToTop()}} ><BsArrowUpSquareFill/></button>
     </header>
   )
 }
