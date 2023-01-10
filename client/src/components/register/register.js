@@ -118,7 +118,9 @@ export const Register = () => {
               />
             </div>
             <button type="submit" className="btn btn-primary">
+            <span className="btn-text">
               Register
+              </span>
             </button>
           </form>
         </div>

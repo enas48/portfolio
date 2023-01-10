@@ -77,7 +77,12 @@ img{
     object-fit: cover;
 }
 .alert{
-    z-index: 3423423423;
+    z-index: 3423;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    top: 2%;
 }
 .close {
     float: right;
@@ -113,8 +118,30 @@ img{
   }
   .btn.disabled, .btn:disabled{
     border: none;
-    opacity: 0.8;
+    opacity:1;
+    position: relative;
+    content: "";
   }
+  .btn.disabled .btn-text, .btn:disabled .btn-text  {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .btn.disabled::after,  .btn:disabled::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid #fff;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+  }
+
   .modal.show{
     display: block;
   }
@@ -124,6 +151,43 @@ img{
   label{
     color: var(--color-primary);
   }
+.sweet-loading{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2222222222223;
+  background: var(--bg-color);
+  transition: var(--transition);
+}
+.modal.show{
+  background: rgba(255,255,255,0.3);
+}
+.ReactTags__selected span.ReactTags__tag {
+  background: var(--color-primary);
+  font-size: 13px;
+  display: inline-block;
+  padding: 6px;
+  margin: 0 5px 5px 5px;
+  cursor: default !important;
+  border-radius: 7px;
+}
+.ReactTags__selected button.ReactTags__remove {
+  background: var(--bg-color-varient);
+  color: var(--white);
+  margin-left: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
+  margin: 0px 5px;
+  padding: 0px 8px;
+  font-size: 1.2em;
+}
+.sidebar-links a{
+  padding: 10px 0;
+}
 
 /*---------------media queries-----------------*/
 @media screen and (max-width:1024px) {
@@ -133,4 +197,19 @@ img{
     section > h2 {
         margin-bottom:2rem;
     }
+}
+
+@media screen and (max-width:480px) {
+ .alert{
+  width: 85%;
+ }
+}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
 }

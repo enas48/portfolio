@@ -5,14 +5,15 @@ import Me from '../../assets/1.png'
 import {HeaderSocial} from './HeaderSocial'
 import { Link, animateScroll as scroll } from "react-scroll";
 import {BsArrowUpSquareFill} from 'react-icons/bs';
-export const Header = () => {
+export const Header = (props) => {
   return (
     <header id='header'>
       <div className='container header-container'>
         <div>
         <h1>Hello, I'm Enas</h1>
         <h5 className='text-light'>Fullstack Developer</h5>
-        <p>I like building a responsive and scalable web applications.</p>
+        {(props.profile.length!==0 &&props.profile[0]?.bio) ?<p>{props.profile[0]?.bio}</p>:<p>I like building a responsive and scalable web applications.</p>}
+    
         <div className='cv'>
           <a href={Cv} download className='btn btn-custom'>Download Cv</a>
           <Link to='contact' smooth={true} className='btn btn-primary btn-custom'>Let's Talk</Link>

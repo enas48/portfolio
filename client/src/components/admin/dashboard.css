@@ -12,6 +12,9 @@
     height: auto!important;
     margin-top: 30px;
 }
+.createproject input{
+    padding-top: 0;
+}
 .dashboard-avater{
     width:120px;
     border-radius: 0.4em;

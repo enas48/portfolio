@@ -18,8 +18,6 @@ export const AllProjects = () => {
           //get user
           const data = result.data.projects;
           setProjects(data);
-          console.log(data); 
-       
         } catch (err) {
           console.log(err);
    

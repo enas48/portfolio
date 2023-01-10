@@ -1,5 +1,6 @@
 import React, { useState, useEffect,useContext} from "react";
-import { Navigate, Link } from "react-router-dom";
+import SquareLoader from "react-spinners/SquareLoader";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../helpers/authContext";
 import MessageModal from "../uielements/messageModal";
@@ -9,14 +10,24 @@ import { AddProfile } from "./addProfile";
 
 
 export function Profile() {
+  const [loading, setLoading] = useState(false);
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "#e5958e",
+    alignSelf: "center",
+  };
   const [profile, setProfile] = useState(null);
   const [massage, setMassage] = useState({ text: null, error: false });
   const { userId } = useContext(AuthContext);
 
 
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
     const fetchProfile = async () => {
-        console.log(userId);
         try {
           const result = await axios(`${process.env.REACT_APP_APP_URL}/profiles/users/${userId}`, {
             headers: {
@@ -27,6 +38,7 @@ export function Profile() {
           const data = result.data.profile;
           if(data){
             setProfile(data);
+      
           }
       
         } catch (err) {
@@ -46,15 +58,23 @@ export function Profile() {
   if (admin === "false") {
     return <Navigate replace to="/" />;
   }
+
   return (
     <>
+        {loading &&
+      <div className="sweet-loading">
+        <SquareLoader
+          color="#e5958e"
+          loading={loading}
+          cssOverride={override}
+          size={60}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>}
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
-    <div className="container">
-        {profile &&<EditProfile profile={profile}/>}
-        {!profile &&<AddProfile/>}
-
- 
-    </div>
+     {!profile && <AddProfile/>}
+     {profile && <EditProfile profile={profile}/>}
     </>
   );
 }

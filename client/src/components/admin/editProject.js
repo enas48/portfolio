@@ -1,12 +1,21 @@
 import { React, useState, useContext, useEffect } from "react";
+import SquareLoader from "react-spinners/SquareLoader";
 import { Navigate, useParams } from "react-router-dom";
 import AuthContext from "../helpers/authContext";
 import MessageModal from "../uielements/messageModal";
 import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
+import { TextInput } from "../uielements/TextInput";
 
 export const EditProject = () => {
+  const [loading, setLoading] = useState(false);
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "#e5958e",
+    alignSelf: "center",
+  };
   const { id } = useParams();
   const [massage, setMassage] = useState({ text: null, error: false });
   const { userId } = useContext(AuthContext);
@@ -22,16 +31,22 @@ export const EditProject = () => {
 
   useEffect(() => {
     const fetchProject = async () => {
+      setLoading(true);
       try {
-        const result = await axios(`${process.env.REACT_APP_APP_URL}/projects/${id}`, {
-          headers: {
-            Accept: "application/json",
-          },
-        });
+        const result = await axios(
+          `${process.env.REACT_APP_APP_URL}/projects/${id}`,
+          {
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        );
         //get user
         const data = result.data.project;
         setFormData(data);
+        setLoading(false);
       } catch (err) {
+        setLoading(false);
         console.log(err);
       }
     };
@@ -55,19 +70,20 @@ export const EditProject = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setMassage({ text: null});
+    setDisabled(true);
     const formData = new FormData();
     for (var key in data) {
       formData.append(key, data[key]);
     }
     formData.append("image", image);
-    setDisabled(true);
     axios
       .put(process.env.REACT_APP_APP_URL + "/projects/" + id, formData)
       .then((response) => {
         if (response.status === 200) {
           setDisabled(false);
           setMassage({ text: response.data.message });
-          setFormData(response.data.project);
+          setFormData({...response.data.project,user:userId});
         }
       })
       .catch((err) => {
@@ -84,35 +100,42 @@ export const EditProject = () => {
 
   return (
     <>
+      {loading && (
+        <div className="sweet-loading">
+          <SquareLoader
+            color="#e5958e"
+            loading={loading}
+            cssOverride={override}
+            size={60}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
       <h3>Edit project</h3>
       <div className="register-container createproject">
         <div className="form-container col-12 ">
           <form onSubmit={onSubmit} method="post" encType="multipart/form-data">
-            <input
-              type="text"
-              value={title}
+            <TextInput
               name="title"
-              placeholder="project title"
+              value={title}
               onChange={onChange}
-              required
+              placeholder="Project Title"
             />
-            <input
-              type="text"
-              value={url}
+            <TextInput
               name="url"
-              placeholder="project url"
+              value={url}
               onChange={onChange}
-              required
+              placeholder="Project Url"
             />
-            <input
-              type="text"
-              value={demo}
+            <TextInput
               name="demo"
-              placeholder="project demo"
+              value={demo}
               onChange={onChange}
-              required
+              placeholder="Project Demo"
             />
+            <label htmlFor="">Choose Image</label>
             <input type="file" name="image" onChange={onImageChange} />
             <div className="portfolio-item-image">
               <img src={data.image} alt="" />
@@ -122,7 +145,9 @@ export const EditProject = () => {
               disabled={disabled}
               className="btn btn-primary btn-custom"
             >
+              <span className="btn-text">
               Edit project
+              </span>
             </button>
           </form>
         </div>

@@ -1,17 +1,27 @@
-import { React, useState, useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { React, useState, useContext, useEffect ,useRef} from "react";
+import SquareLoader from "react-spinners/SquareLoader";
+import { Navigate, Link } from "react-router-dom";
 import AuthContext from "../helpers/authContext";
 import MessageModal from "../uielements/messageModal";
 import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
+import { TextInput } from "../uielements/TextInput";
 
 export const AddProject = () => {
+  const [loading, setLoading] = useState(false);
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "#e5958e",
+    alignSelf: "center",
+  };
   const [massage, setMassage] = useState({ text: null, error: false });
   const { userId } = useContext(AuthContext);
   const [image, setImage] = useState("");
   const admin = localStorage.getItem("admin");
   const [disabled, setDisabled] = useState(false);
+  const imageInputRef = useRef();
   const [data, setFormData] = useState({
     title: "",
     url: "",
@@ -19,6 +29,13 @@ export const AddProject = () => {
     userId,
   });
   const { title, url, demo } = data;
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
+
   if (admin === "false") {
     return <Navigate replace to="/" />;
   }
@@ -34,6 +51,7 @@ export const AddProject = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setMassage({ text: null});
     const formData = new FormData();
     for (var key in data) {
       formData.append(key, data[key]);
@@ -54,15 +72,16 @@ export const AddProject = () => {
             userId: userId,
           });
           setImage("");
+          imageInputRef.current.value = "";
         }
       })
-      .catch((err) =>{
-      setDisabled(false);
+      .catch((err) => {
+        setDisabled(false);
         setMassage({
           text: err.response.data.message || "something want wrong",
           error: true,
-        })}
-      );
+        });
+      });
   };
   const handleClear = () => {
     setMassage({ text: null, error: false });
@@ -70,38 +89,51 @@ export const AddProject = () => {
 
   return (
     <>
+      {loading && (
+        <div className="sweet-loading">
+          <SquareLoader
+            color="#e5958e"
+            loading={loading}
+            cssOverride={override}
+            size={60}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
       <h3>Add project</h3>
       <div className="register-container createproject">
         <div className="form-container col-12  ">
           <form onSubmit={onSubmit} method="post" encType="multipart/form-data">
-            <input
-              type="text"
-              value={title}
+            <TextInput
               name="title"
-              placeholder="project title"
+              value={title}
               onChange={onChange}
-              required
+              placeholder="Project Title"
             />
-            <input
-              type="text"
-              value={url}
+            <TextInput
               name="url"
-              placeholder="project url"
+              value={url}
               onChange={onChange}
-              required
+              placeholder="Project Url"
             />
-            <input
-              type="text"
-              value={demo}
+            <TextInput
               name="demo"
-              placeholder="project demo"
+              value={demo}
               onChange={onChange}
-              required
+              placeholder="Project Demo"
             />
-            <input type="file" name="image" onChange={onImageChange} />
-            <button type="submit" disabled={disabled} className="btn btn-primary btn-custom">
+            <label htmlFor="">Choose Image</label>
+            <input type="file" name="image"   ref={imageInputRef}  onChange={onImageChange} required/>
+            <button
+              type="submit"
+              disabled={disabled}
+              className="btn btn-primary btn-custom"
+            >
+              <span className="btn-text">
               Add project
+              </span>
             </button>
           </form>
         </div>

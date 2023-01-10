@@ -2,9 +2,8 @@ import React from 'react'
 import './about.css'
 import Me from '../../assets/1.jpg'
 import {FaAward} from 'react-icons/fa'
-import {VscFolderLibrary} from 'react-icons/vsc'
 import { Link } from "react-scroll";
-export const About = () => {
+export const About = (props) => {
   return (
     <section id='about'>
       <h5>Get To Know</h5>
@@ -20,17 +19,13 @@ export const About = () => {
                 <div className='about-card'>
                   <FaAward className='about-icon'/>
                     <h5>Experience</h5>
-                    <small>2+ years Working</small>
+                    {(props.profile.length!==0 &&props.profile[0]?.yearsOfExp) ?<small>{props.profile[0]?.yearsOfExp}+ years Working</small>: <small>2+ years Working</small>}
+                   
                 </div>
-                <div className='about-card'>
-                  <VscFolderLibrary className='about-icon'/>
-                    <h5>Projects</h5>
-                    <small>10+ Completed</small>
-                </div>
+               
               </div>
-              <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-              </p>
+              {(props.profile.length!==0 &&props.profile[0]?.aboutme) ?<p>{props.profile[0]?.aboutme}</p>: <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab blanditiis illum accusantium esse? Sint ab nisi, ipsam corrupti repudiandae esse architecto perspiciatis nemo, consequatur, harum excepturi. Magni incidunt aliquam nihil?</p>}
+            
               <Link to='contact' smooth={true} className='btn btn-primary btn-custom'>Let's Talk</Link>
           </div>
       </div>

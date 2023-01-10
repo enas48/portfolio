@@ -1,15 +1,23 @@
 import { React, useState, useContext, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import SquareLoader from "react-spinners/SquareLoader";
+import { Navigate } from "react-router-dom";
 import AuthContext from "../helpers/authContext";
 import MessageModal from "../uielements/messageModal";
 import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
-
+import {TextInput} from "../uielements/TextInput";
+import { TagInput } from "../uielements/tagInput";
 
 export const EditProfile = (props) => {
+  const [loading, setLoading] = useState(false);
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "#e5958e",
+    alignSelf: "center",
+  };
   const  id  = props.profile._id;
-  console.log(id);
   const [massage, setMassage] = useState({ text: null, error: false });
   const { userId } = useContext(AuthContext);
   const admin = localStorage.getItem("admin");
@@ -25,12 +33,36 @@ export const EditProfile = (props) => {
   });
 
   useEffect(() => {
-    setFormData(props.profile);
-    console.log(props.profile);
-   console.log(data);
+    const profile =props.profile;
+    setFormData({...profile,user:userId});
   }, []);
 
-  const { bio, aboutme, yearsOfExp, frontendExperiences, backendExperiences, otherExperiences} = data;
+  const addFrontExp=(tag)=>{
+    setFormData(
+      (prevState) => ({
+        ...prevState,
+        frontendExperiences:tag,
+      }))
+
+  }
+  const addBackExp=(tag)=>{
+    setFormData(
+      (prevState) => ({
+        ...prevState,
+        backendExperiences:tag,
+      }))
+
+  }
+  const addOtherExp=(tag)=>{
+    setFormData(
+      (prevState) => ({
+        ...prevState,
+        otherExperiences:tag,
+      }))
+
+  }
+
+  const { bio, aboutme, yearsOfExp} = data;
   if (admin === "false") {
     return <Navigate replace to="/" />;
   }
@@ -44,7 +76,7 @@ export const EditProfile = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-   
+    setMassage({ text: null});
     setDisabled(true);
     axios
       .put(process.env.REACT_APP_APP_URL + "/profiles/" + id, data)
@@ -52,8 +84,7 @@ export const EditProfile = (props) => {
         if (response.status === 200) {
           setDisabled(false);
           setMassage({ text: response.data.message });
-          setFormData(response.data.project);
-          console.log(response.data);
+          setFormData({...response.data.profile,user:userId});
         }
       })
       .catch((err) => {
@@ -70,45 +101,37 @@ export const EditProfile = (props) => {
 
   return (
     <>
+        {loading && (
+        <div className="sweet-loading">
+          <SquareLoader
+            color="#e5958e"
+            loading={loading}
+            cssOverride={override}
+            size={60}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
       <h3>Edit profile</h3>
       <div className="register-container createproject">
         <div className="form-container col-12 ">
           <form onSubmit={onSubmit} method="post" >
-            <label htmlFor="">Bio</label>
-            <input
-              type="text"
-              value={bio}
-              name="bio"
-              placeholder="Bio"
-              onChange={onChange}
-              required
-            />
-              <label htmlFor="">About Me</label>
-            <input
-              type="text"
-              value={aboutme}
-              name="aboutme"
-              placeholder="About me"
-              onChange={onChange}
-              required
-            />
-              <label htmlFor="">years Of Experiences</label>
-            <input
-              type="text"
-              value={yearsOfExp}
-              name="yearsOfExp"
-              placeholder="years Of Experiences"
-              onChange={onChange}
-              required
-            />
-          
+            <TextInput name="bio" value={bio} onChange={onChange} placeholder="Bio"/>
+            <TextInput name="aboutme" value={aboutme} onChange={onChange} placeholder="About Me"/>
+            <TextInput name="yearsOfExp" value={yearsOfExp} onChange={onChange} placeholder="years Of Experiences"/>
+            <TagInput onAddTag={addFrontExp} profile={data.frontendExperiences} placeholder="Edit Frontend Experiences"/>
+              <TagInput onAddTag={addBackExp} profile={data.backendExperiences} placeholder="Edit Backend Experiences"/>
+              <TagInput onAddTag={addOtherExp} profile={data.otherExperiences} placeholder="Edit Other Experiences"/>
             <button
               type="submit"
               disabled={disabled}
               className="btn btn-primary btn-custom"
             >
+              <span className="btn-text">
               Edit project
+              </span>
             </button>
           </form>
         </div>

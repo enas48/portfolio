@@ -107,7 +107,9 @@ export const Login = (props) => {
               />
             </div>
             <button type="submit" disabled={disabled} className="btn btn-primary btn-custom">
+            <span className="btn-text">
               Login
+              </span>
             </button>
           </form>
         </div>
