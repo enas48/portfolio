@@ -19,7 +19,7 @@ export default function Modal(props) {
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary"  onClick={props.onClose}>Close</button>
-          <button type="button" className="btn btn-danger" id={props.id} onClick={props.onDelete}>Delete</button>
+          <button type="button" className="btn btn-danger" disabled={props.disabled} id={props.id} onClick={props.onDelete}><span className="btn-text" id={props.id} onClick={props.onDelete}>Delete</span></button>
         </div>
       </div>
     </div>

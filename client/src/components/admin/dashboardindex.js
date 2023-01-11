@@ -16,6 +16,7 @@ export function DashboardIndex() {
   };
   const [projects, setProjects] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [id, setId] = useState(null);
   const [massage, setMassage] = useState({ text: null, error: false });
 
@@ -49,6 +50,7 @@ export function DashboardIndex() {
   const handleDelete = async (e) => {
     let projectId = e.target.id;
     setMassage({ text: null, error: false });
+    setDisabled(true);
     try {
       const result = await axios(
         `${process.env.REACT_APP_APP_URL}/projects/${projectId}`,
@@ -61,9 +63,11 @@ export function DashboardIndex() {
       );
       //get user
       const data = result.data.message;
+      setDisabled(false);
       fetchProjects();
       setMassage({ text: data, error: false });
     } catch (err) {
+      setDisabled(false);
       setMassage({
         text: err.response.data.message || "something want wrong",
         error: true,
@@ -96,7 +100,7 @@ export function DashboardIndex() {
           />
         </div>
       )}
-      {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
+      {massage.text && <MessageModal  massage={massage} onClear={handleClear} />}
       <div className="container">
         <div className="table-responsive">
           <table className="table">
@@ -110,7 +114,7 @@ export function DashboardIndex() {
               </tr>
             </thead>
             <tbody>
-              {projects &&
+              {projects.length !== 0 ? (
                 projects.map((item) => (
                   <tr key={item._id}>
                     <td>{item.title}</td>
@@ -149,11 +153,17 @@ export function DashboardIndex() {
                       </div>
                     </td>
                   </tr>
-                ))}
+                ))
+              ) : (
+                <tr className="text-center">
+                  <td colSpan={5}>No Projects found</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
         <Modal
+          disabled={disabled}
           show={modalOpen}
           onClose={handleClose}
           id={id}

@@ -91,9 +91,9 @@ const getProfileByUserId = async (req, res, next) => {
 //@access private
 const updatedProfile = async (req, res, next) => {
   try {
-
     const userId= req.body.user;
     const profile = await profileService.getProfileById(req.params.id);
+
     if(!profile){
       const error = new HttpError('profile not found' , 400);
       return next(error);
@@ -117,6 +117,7 @@ const updatedProfile = async (req, res, next) => {
 
     const {bio, aboutme, yearsOfExp, frontendExperiences, backendExperiences, otherExperiences} = req.body;
     const updatedProfile = await profileService.updateProfile(req.params.id,{bio, aboutme, yearsOfExp, frontendExperiences, backendExperiences, otherExperiences} );
+
     res.status(200).json({ profile:updatedProfile, message: `profile updated successfully` }); 
     }
   } catch (err) {
