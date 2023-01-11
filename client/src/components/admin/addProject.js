@@ -7,6 +7,7 @@ import axios from "axios";
 import "../register/register.css";
 import "./dashboard.css";
 import { TextInput } from "../uielements/TextInput";
+import { TagInput } from "../uielements/tagInput";
 
 export const AddProject = () => {
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,15 @@ export const AddProject = () => {
     url: "",
     demo: "",
     userId,
+    tags:[]
   });
+  const addTags=(tag)=>{
+    setFormData(
+      (prevState) => ({
+        ...prevState,
+        tags: JSON.stringify(tag)
+      }))
+  }
   const { title, url, demo } = data;
   useEffect(() => {
     setLoading(true);
@@ -51,11 +60,13 @@ export const AddProject = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+  
     setMassage({ text: null});
     const formData = new FormData();
     for (var key in data) {
       formData.append(key, data[key]);
     }
+
     formData.append("image", image);
     setDisabled(true);
 
@@ -124,6 +135,7 @@ export const AddProject = () => {
               onChange={onChange}
               placeholder="Project Demo"
             />
+              <TagInput onAddTag={addTags} placeholder="Add Tags"/>
             <label htmlFor="">Choose Image</label>
             <input type="file" name="image"   ref={imageInputRef}  onChange={onImageChange} required/>
             <button

@@ -12,6 +12,20 @@ const projectSchema = new Schema(
     url: String,
     demo: String,
     image: String,
+    tags:[
+      {
+          text: {
+            type: String,
+            required: false,
+            default: "",
+          },
+          id: {
+            type: String,
+            required: false,
+            default: "",
+          }
+    }
+    ],
   },
   {
     timestamps: true,

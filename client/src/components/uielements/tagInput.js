@@ -33,11 +33,12 @@ export const TagInput = (props) => {
   };
 
   useEffect(() => {
-if(props.profile){
-  setTags(props.profile)
+    
+if(Array.isArray(props.tags)){
+  setTags(props.tags)
 }
 
-  }, [props.profile]);
+  }, [props.tags]);
   return (
     <>
     <label>{props.placeholder}</label>

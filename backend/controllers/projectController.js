@@ -22,9 +22,8 @@ const getProjects = async (req, res, next) => {
 const createProject = async (req, res, next) => {
   try {
     const imageurl = req.file.path;
-    console.log(req.file.path) // to see what is returned to you
-    const {title, url, demo, userId} = req.body;
-    const project = await projectService.createProject({title, url, demo, user:userId,image:imageurl});
+    const {title, url, demo, tags, userId} = req.body;
+    const project = await projectService.createProject({title, url, demo,tags:JSON.parse(tags), user:userId,image:imageurl});
     res.status(200).json({project: project, message: "Project Added Successfully" });
   } catch (err) {
     const error = new HttpError( err.message , 500);
@@ -78,13 +77,13 @@ const updateProject = async (req, res, next) => {
       const error = new HttpError( 'user not authorized' , 401);
       return next(error);
     }
-    const {title, url, demo} = req.body;
+    const {title, url, demo, tags} = req.body;
     if(req.file){
       imageurl = req.file.path;
     }else{
       imageurl = project.image;
     }
-    const updatedProject = await projectService.updateProject(req.params.id,{title, url, demo,image:imageurl});
+    const updatedProject = await projectService.updateProject(req.params.id,{title, url, demo, tags:JSON.parse(tags), image:imageurl});
     res.status(200).json({ project:updatedProject, message: `project updated successfully` }); 
     }
   } catch (err) {

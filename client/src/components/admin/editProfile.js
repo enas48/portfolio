@@ -121,9 +121,9 @@ export const EditProfile = (props) => {
             <TextInput name="bio" value={bio} onChange={onChange} placeholder="Bio"/>
             <TextInput name="aboutme" value={aboutme} onChange={onChange} placeholder="About Me"/>
             <TextInput name="yearsOfExp" value={yearsOfExp} onChange={onChange} placeholder="years Of Experiences"/>
-            <TagInput onAddTag={addFrontExp} profile={data.frontendExperiences} placeholder="Edit Frontend Experiences"/>
-              <TagInput onAddTag={addBackExp} profile={data.backendExperiences} placeholder="Edit Backend Experiences"/>
-              <TagInput onAddTag={addOtherExp} profile={data.otherExperiences} placeholder="Edit Other Experiences"/>
+            <TagInput onAddTag={addFrontExp} tags={data.frontendExperiences} placeholder="Edit Frontend Experiences"/>
+              <TagInput onAddTag={addBackExp} tags={data.backendExperiences} placeholder="Edit Backend Experiences"/>
+              <TagInput onAddTag={addOtherExp} tags={data.otherExperiences} placeholder="Edit Other Experiences"/>
             <button
               type="submit"
               disabled={disabled}
