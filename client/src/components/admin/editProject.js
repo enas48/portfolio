@@ -51,7 +51,7 @@ export const EditProject = () => {
         );
         //get user
         const data = result.data.project;
-        setFormData(data);
+        setFormData({...data,user: userId});
         setLoading(false);
       } catch (err) {
         setLoading(false);

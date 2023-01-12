@@ -93,7 +93,6 @@ const updatedProfile = async (req, res, next) => {
   try {
     const userId= req.body.user;
     const profile = await profileService.getProfileById(req.params.id);
-
     if(!profile){
       const error = new HttpError('profile not found' , 400);
       return next(error);

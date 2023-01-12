@@ -5,7 +5,48 @@ import { WithContext as ReactTags } from "react-tag-input";
 
 export const TagInput = (props) => {
   const [tags, setTags] = useState([]);
-
+  const suggestions = [
+    {
+      id: 'html',
+      text:'html'
+    },
+    {
+      id: 'css',
+      text:'css'
+    },
+    {
+      id: 'javascript',
+      text:'javascript'
+    },
+    {
+      id: 'jquery',
+      text:'jquery'
+    },
+    {
+      id: 'react',
+      text:'react'
+    },
+    {
+      id: 'redux',
+      text:'redux'
+    },
+    {
+      id: 'angular',
+      text:'angular'
+    },
+    {
+      id: 'php',
+      text:'php'
+    },
+    {
+      id: 'laravel',
+      text:'laravel'
+    },
+    {
+      id: 'nodejs',
+      text:'nodejs'
+    },
+  ];
   const KeyCodes = {
     comma: 188,
     enter: 13
@@ -36,6 +77,7 @@ export const TagInput = (props) => {
     
 if(Array.isArray(props.tags)){
   setTags(props.tags)
+  props.onAddTag(props.tags);
 }
 
   }, [props.tags]);
@@ -45,6 +87,7 @@ if(Array.isArray(props.tags)){
       <ReactTags
         tags={tags}
         delimiters={delimiters}
+        suggestions={suggestions}
         handleDelete={handleDelete}
         handleAddition={handleAddition}
         handleDrag={handleDrag}

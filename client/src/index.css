@@ -58,9 +58,9 @@ a:hover{
     border: 1px solid var(--color-primary);
     transition: var(--transition);
 }
-.btn:hover, .btn.active{
-    background: var(--color-white);
-    color: var(--bg-color);
+.btn:hover, .btn.active,  .btn-custom.active{
+    background: var(--color-white)!important;
+    color: var(--bg-color)!important;
     border-color: transparent;
 }
 .btn-primary {

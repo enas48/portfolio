@@ -1,14 +1,16 @@
 .portfolio-container {
+  padding-bottom: 2rem;
+}
+.project-container{
   display: grid;
   grid-template-columns: repeat(auto-fill, 380px);
   justify-content: center;
   gap: 2.5rem;
   padding-bottom: 2rem;
 }
-
 .portfolio-item {
   background: var(--bg-color-varient);
-  padding: 1.2rem;
+  /* padding: 1.2rem; */
   border-radius: 2rem;
   height: 200px;
   border: 1px solid transparent;
@@ -16,7 +18,20 @@
   position: relative;
   overflow: hidden;
   box-shadow: 2px 3px 8px -4px var(--color-primary);
+
 }
+.portfolio-item.active{
+  animation: .6s zoom-in;
+}
+@keyframes zoom-in {
+  0% {
+   transform: scale(.1);
+  }
+  100% {
+    transform: none;
+  }
+}
+
 
 .portfolio-item:hover {
   background: transparent;
@@ -73,7 +88,13 @@
   gap: 1rem;
   margin-bottom: 1rem;
 }
-
+.tags-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 2rem auto;
+    justify-content: center;
+}
 @media screen and (max-width: 480px) {
   .portfolio-item {
     width: 73%;
