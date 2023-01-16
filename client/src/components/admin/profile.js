@@ -26,7 +26,7 @@ export function Profile() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
     const fetchProfile = async () => {
         try {
           const result = await axios(`${process.env.REACT_APP_APP_URL}/profiles/users/${userId}`, {

@@ -130,7 +130,7 @@ export const EditProfile = (props) => {
               className="btn btn-primary btn-custom"
             >
               <span className="btn-text">
-              Edit project
+              Edit profile
               </span>
             </button>
           </form>

@@ -1,6 +1,6 @@
 import { React, useState, useContext, useEffect ,useRef} from "react";
 import SquareLoader from "react-spinners/SquareLoader";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import AuthContext from "../helpers/authContext";
 import MessageModal from "../uielements/messageModal";
 import axios from "axios";
@@ -42,7 +42,7 @@ export const AddProject = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
   }, []);
 
   if (admin === "false") {
