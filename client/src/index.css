@@ -188,7 +188,10 @@ img{
 .sidebar-links a{
   padding: 10px 0;
 }
-
+.scroll-top:hover{
+background: inherit!important;
+    color: var(--color-light)!important;
+}
 /*---------------media queries-----------------*/
 @media screen and (max-width:1024px) {
     section{

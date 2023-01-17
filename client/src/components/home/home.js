@@ -39,10 +39,7 @@ export const Home = (props) => {
       }
     };
     fetchProfile();
-    // setLoading(true);
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 1500);
+
   }, []);
 
   return (

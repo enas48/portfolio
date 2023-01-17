@@ -39,7 +39,7 @@ export const Portfolio = () => {
     }  
 
   }
-  const tags=['all', 'html', 'css', 'javascript', 'jquery', 'react', 'redux', 'angular', 'php', 'laravel', 'nodejs' ];
+  const tags=['all', 'html', 'css', 'javascript', 'jquery', 'react', 'redux', 'angular',  'nodejs' ];
 
 
   return (

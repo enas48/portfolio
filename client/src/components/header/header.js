@@ -27,7 +27,7 @@ export const Header = (props) => {
 
      
       </div>
-      <button className='btn btn-outline scroll-top btn-custom' onClick={()=>{scroll.scrollToTop()}} ><BsArrowUpSquareFill/></button>
+      <button className='btn btn-outline scroll-top' onClick={()=>{scroll.scrollToTop()}} ><BsArrowUpSquareFill/></button>
     </header>
   )
 }
