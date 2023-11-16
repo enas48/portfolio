@@ -17,6 +17,7 @@ export const Portfolio = () => {
           },
         });
         const data = result.data.projects;
+        console.log(data)
         setProjects(data);
         setFilteredProjects(data);  
       } catch (err) {
@@ -39,7 +40,7 @@ export const Portfolio = () => {
     }  
 
   }
-  const tags=['all', 'html', 'css', 'javascript', 'jquery', 'react', 'redux', 'angular',  'nodejs' ];
+  const tags=['all', 'html', 'css', 'javascript', 'jquery', 'react', 'redux', 'angular',  'nodejs', 'mongodb','tailwind' ];
 
 
   return (

@@ -12,7 +12,7 @@ import { EditProject } from "./components/admin/editProject";
 import {DashboardIndex} from "./components/admin/dashboardindex";
 import { Profile } from "./components/admin/profile";
 import {Notfound} from "./components/notfoud/Notfound"
-
+import AuthVerify from "./components/helpers/AuthVerify";
 import AuthContext from "./components/helpers/authContext";
 
 
@@ -85,9 +85,12 @@ export const App = () => {
             {/* <Route path="register" element={<Register />} /> */}
 
             <Route path="*" element={<Notfound />} />
+            
           </Routes>
+          <AuthVerify logOut={logout}/>
         </Router>
       </>
+ 
     </AuthContext.Provider>
   );
 };

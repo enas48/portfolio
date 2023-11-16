@@ -46,6 +46,15 @@ export const TagInput = (props) => {
       id: 'nodejs',
       text:'nodejs'
     },
+    {
+      id:'mongodb',
+      text:'mongodb'
+    }
+    ,
+    {
+      id:'tailwind',
+      text:'tailwind'
+    }
   ];
   const KeyCodes = {
     comma: 188,
