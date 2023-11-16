@@ -1,6 +1,6 @@
 import React from 'react'
 import './header.css'
-import Cv from '../../assets/cv.pdf'
+import Cv from '../../assets/cv2.pdf'
 import Me from '../../assets/1.png'
 import {HeaderSocial} from './HeaderSocial'
 import { Link, animateScroll as scroll } from "react-scroll";
@@ -27,7 +27,7 @@ export const Header = (props) => {
 
      
       </div>
-      <button className='btn btn-outline scroll-top' onClick={()=>{scroll.scrollToTop()}} ><BsArrowUpSquareFill/></button>
+      <button className='btn btn-outline scroll-top' onClick={()=>{scroll.scrollToTop()}} ><BsArrowUpSquareFill className='icon'/></button>
     </header>
   )
 }
