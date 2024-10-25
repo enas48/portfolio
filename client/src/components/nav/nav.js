@@ -40,7 +40,7 @@ export const Nav = (props) => {
               >
                 Home
               </LinkScroll>
-              <LinkScroll
+              {/* <LinkScroll
                 to="about"
                 offset={-100}
                 smooth={true}
@@ -48,7 +48,7 @@ export const Nav = (props) => {
                 activeClass="active"
               >
                 About
-              </LinkScroll>
+              </LinkScroll> */}
               <LinkScroll
                 to="experience"
                 offset={-100}
@@ -57,6 +57,15 @@ export const Nav = (props) => {
                 activeClass="active"
               >
                 Experience
+              </LinkScroll>
+              <LinkScroll
+                to="projects"
+                offset={-100}
+                smooth={true}
+                spy={true}
+                activeClass="active"
+              >
+                Projects
               </LinkScroll>
               <LinkScroll
                 to="portfolio"

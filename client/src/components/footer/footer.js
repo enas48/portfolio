@@ -18,6 +18,9 @@ export const Footer = () => {
           <Link to="experience" smooth={true} >Experience</Link>
         </li>
         <li>
+          <Link to="projects" smooth={true} >Projects</Link>
+        </li>
+        <li>
           <Link to="portfolio" smooth={true} >Portfolio</Link>
         </li>
         <li>
@@ -38,7 +41,8 @@ export const Footer = () => {
           </a>
       </div>
       <div className="footer-copyright">
-        <small>&copy; {new Date().getFullYear()}. All rights reserved.</small>
+        <p className='mb-0'>     &copy; {new Date().getFullYear()}. All rights reserved.</p>
+  
       </div>
     </footer>
   )

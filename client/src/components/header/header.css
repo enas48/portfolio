@@ -1,54 +1,57 @@
 header{
-    height: 100vh;
+    /* height: 100vh; */
+    min-height: 100vh;
     padding-top: 7rem;
     overflow: hidden;
-    /* background-image: url('../../../src/assets/buoy.svg');
-    background-size: cover; */
+    /* background: #f3f3f3 */
 }
 .header-container{
  text-align: center;  
- height: 100%;
- width: 85%;
+ height: 100vh;
+margin: auto;
  position: relative;
  display: flex;
- justify-content: center;
+ justify-content: space-between;
  align-items: center;
  flex-wrap: wrap;
  text-align: left;
- gap: 5rem;
+ /* gap: 5rem; */
 }
 .cv{
-    margin-top: 2.5rem;
+ 
     display: flex;
     gap: 1rem;
 
 }
 .header-social{
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 0.8rem;
-    position: fixed;
-    left: 0;
-    bottom: 40%;
-    margin-left: 1rem;
-    z-index: 222;
+
     font-size: 1.3rem;
 }
-.header-social a{
-    color:var(--color-light);
+.header-social a {
+    background: var(--color-primary);
+    color: var(--bg-color);
+    padding: 0.6rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    border: 1px solid transparent;
+    transition: var(--transition);
 }
-.header-social::after{
-    content: '';
-    width: 1px;
-    height: 2rem;
-    background-color:var(--color-light);
+.header-social a:hover {
+    background: var(--color-white);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 .me{
     background: var(--color-primary);
     width: 22rem;
     background-color:linear-gradient(var(--color-primary), transparent) ;
     overflow: hidden;
+    text-align: center;
+
 }
 .scrol-down{
     position: absolute;
@@ -64,18 +67,42 @@ header{
     right: 2rem;
     font-size: 2.5rem;
     z-index: 222;
-    color: var(--color-white)!important;
-  background-color: var(--bg-color);
+    color: var(--color-primary)!important;
+    background-color: var(--bg-color);
+    border: 1px solid transparent!important;
   
 }
 .scroll-top:hover{
-    background-color: var(--bg-color);  
+    background-color: var(--color-primary);  
 }
 .scroll-top .icon{
     box-shadow: 0px 1px 4px var(--bg-color);
     display: block;
 
 }
+
+.typewriter h5{
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid var(--color-primary); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    width: 15.6rem;
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 15.6rem}
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color-primary); }
+  }
 
 /*---------------media queries-----------------*/
 @media screen and (max-width:680px) {
@@ -86,6 +113,11 @@ header{
     bottom: 1.5rem;
     right: 1.5rem;
 }
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 15rem }
+  }
 }
 @media screen and (orientation:landscape) and  (max-width:900px) {
     header{

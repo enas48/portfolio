@@ -10,7 +10,10 @@ const profileSchema = new Schema(
     },
     bio: String,
     aboutme: String,
-    yearsOfExp: String,
+    yearsOfExp:
+    {type:String,
+      default:new Date().getFullYear() - 2021
+    },
     frontendExperiences: [
         {
             text: {

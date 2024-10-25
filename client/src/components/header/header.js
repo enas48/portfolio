@@ -8,19 +8,21 @@ import {BsArrowUpSquareFill} from 'react-icons/bs';
 export const Header = (props) => {
   return (
     <header id='header'>
-      <div className='container header-container'>
-        <div>
-        <h1>Hello, I'm Enas</h1>
-        <h5 className='text-light'>Fullstack Developer</h5>
+      <div className='container header-container row'>
+        <div className='d-flex flex-column gap-2 col-md-6'>
+        <h1 >Hello, I'm <span className='text-primary'>Enas Mohammed</span></h1>
+        <div className='typewriter'>
+        <h5 >Fullstack Developer</h5>
+        </div>
         {(props.profile.length!==0 &&props.profile[0]?.bio) ?<p>{props.profile[0]?.bio}</p>:<p>I like building a responsive and scalable web applications.</p>}
     
-        <div className='cv'>
-          <a href={Cv} download className='btn btn-custom'>Download Cv</a>
-          <Link to='contact' smooth={true} className='btn btn-primary btn-custom'>Let's Talk</Link>
+        <div >
+          <a href={Cv} download className='btn btn-custom mb-3'>Download Cv</a>
+          {/* <Link to='contact' smooth={true} className='btn btn-primary btn-custom'>Let's Talk</Link> */}
         </div>
         <HeaderSocial/>
         </div>
-        <div className='me'>
+        <div className='me col-lg-6'>
           <img src={Me} alt="me"/>
         </div>
     

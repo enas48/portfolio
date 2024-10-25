@@ -1,5 +1,5 @@
 nav {
-    background: var(--bg-color-varient);
+ 
     padding: 0.7rem 1.7rem;
     gap: 1rem;
     z-index: 4;
@@ -7,7 +7,8 @@ nav {
     height: 60px;
     top: 0;
     width: 100%;
-    box-shadow: 2px 2px 7px -3px var(--color-primary);
+    box-shadow: 2px 2px 7px -3px #c8c8c8;
+    background-color: var(--color-white);
 }
 
 .menu {
@@ -25,7 +26,7 @@ nav {
     display: none;
 }
 .hamburger:hover {
-   color:  var(--color-white) !important;
+   color:  var(--color-black) !important;
   }
   .show-ipad{
     display: none;
@@ -66,7 +67,7 @@ nav {
         }
   }
 nav a {
-    color: var(--color-primary) !important;
+    color: var(--color-black) !important;
     transition: var(--transition);
     font-size: 1.1rem;
     /* border-radius: 50%; */
@@ -75,23 +76,23 @@ nav a {
 }
 
 nav a.active {
-    color: var(--color-white) !important;
+    color: var(--color-primary) !important;
     /* background: var(--color-primary); */
 }
 
 nav a:hover {
-    color: var(--color-whiter) !important;
+    color: var(--color-primary) !important;
 }
 
 .btn-outline {
     padding: 0 !important;
-    border: none !important;
+    border: none ;
 
 }
 
 .btn-outline:hover {
     padding: 0 !important;
-    border: none !important;
-    color: var(--color-white) !important;
+    border: none ;
+    color: var(--color-black) !important;
     background: none !important;
 }

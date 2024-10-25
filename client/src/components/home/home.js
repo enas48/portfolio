@@ -9,6 +9,7 @@ import { Nav } from "../nav/nav";
 import { Portfolio } from "../portfolio/portfolio";
 import { Parallax } from "react-parallax";
 import axios from "axios";
+import { Projects } from "../projects/projects";
 
 export const Home = (props) => {
   const [loading, setLoading] = useState(false);
@@ -59,20 +60,24 @@ export const Home = (props) => {
   
      <Nav home="true"  />
           <div>
-      <Parallax strength={-200} bgImage={require('../../assets/bg.jpg')} blur={{min:-15, max:15}}>
+      <Parallax strength={-200} bgImage={require('../../assets/bg3.jpg')} blur={{min:-15, max:15}}>
         <Header profile={profile} />
-        </Parallax>
-      <Parallax strength={-200} bgImage={require('../../assets/bg2.jpg')} blur={{min:-15, max:15}}>
+       
+      {/* <Parallax strength={-200} bgImage={require('../../assets/bg2.jpg')} blur={{min:-15, max:15}}> */}
           <About profile={profile} />
-      </Parallax>
-      <Parallax strength={-200} bgImage={require('../../assets/bg.jpg')} blur={{min:-15, max:15}}>
+      {/* </Parallax>*/}
+      {/* <Parallax strength={-200} bgImage={require('../../assets/bg3.jpg')} blur={{min:-15, max:15}}>  */}
          <Experience profile={profile} />
-      </Parallax>
-      <Parallax strength={-200} bgImage={require('../../assets/bg2.jpg')} blur={{min:-15, max:15}}>
+    {/* </Parallax> */}
+     {/*    <Parallax strength={-200} bgImage={require('../../assets/bg.jpg')} blur={{min:-15, max:15}}> */}
+         <Projects />
+      {/* </Parallax>
+      <Parallax strength={-200} bgImage={require('../../assets/bg2.jpg')} blur={{min:-15, max:15}}> */}
           <Portfolio />
-      </Parallax>
-      <Parallax strength={-200} bgImage={require('../../assets/bg.jpg')} blur={{min:-15, max:15}}>
+      {/* </Parallax>
+      <Parallax strength={-200} bgImage={require('../../assets/bg.jpg')} blur={{min:-15, max:15}}> */}
           <Contact />
+      {/* </Parallax> */}
       </Parallax>
       <Footer />
      </div>
