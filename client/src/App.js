@@ -21,13 +21,20 @@ export const App = () => {
   const [userId, setUserid] = useState(localStorage.getItem("id"));
   const [admin, setAdmin] = useState(localStorage.getItem("admin"));
   const [role, setRole] = useState(false);
+  const [theme, setTheme] = useState('dark');
+
   useEffect(() => {
     if (admin === "true") {
       setRole(true);
     } else {
       setRole(false);
     }
-  }, [admin,role]);
+    if (localStorage.getItem('theme')) {
+      setTheme(localStorage.getItem('theme'))
+    } else {
+      localStorage.setItem('theme', theme);
+    }
+  }, [admin,role,theme]);
 
   const login = (data) => {
     localStorage.setItem("token", data.token);
@@ -60,6 +67,8 @@ export const App = () => {
         isAdmin: admin,
         login: login,
         logout: logout,
+        theme:theme,
+        setTheme:setTheme
       }}
     >
       <>

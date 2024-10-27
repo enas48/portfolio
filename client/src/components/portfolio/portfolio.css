@@ -1,5 +1,7 @@
 .portfolio-container {
   padding-bottom: 2rem;
+  opacity: 1;
+  animation: fadeIn 2s ease-in; 
 }
 .project-container{
   display: grid;
@@ -9,7 +11,6 @@
   padding-bottom: 2rem;
 }
 .portfolio-item {
-  background: var(--bg-color-varient);
   /* padding: 1.2rem; */
   border-radius: 2rem;
   height: 200px;
@@ -19,6 +20,12 @@
   overflow: hidden;
   box-shadow: 2px 3px 8px -4px var(--color-primary);
 
+}
+.light .portfolio-item ,.light .portfolio-item:hover ,.light .overlay {
+  background: var(--color-white);
+}
+.dark .portfolio-item,.dark  .portfolio-item:hover,.dark .overlay  {
+  background: var(--color-black);
 }
 .portfolio-item.active{
   animation: .6s zoom-in;
@@ -34,7 +41,7 @@
 
 
 .portfolio-item:hover {
-  background: transparent;
+  /* background: transparent; */
   border: 1px solid var(--color-primary);
 }
 
@@ -63,7 +70,6 @@
   display: flex;
   left: 0;
   flex-direction: column;
-  background: #fff;
   align-items: center;
   justify-content: center;
   width: 100%;

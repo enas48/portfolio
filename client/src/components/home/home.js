@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
+import AuthContext from "../helpers/authContext";
 import SquareLoader from "react-spinners/SquareLoader";
 import { About } from "../about/about";
 import { Contact } from "../contact/contact";
@@ -14,6 +15,7 @@ import { Projects } from "../projects/projects";
 export const Home = (props) => {
   const [loading, setLoading] = useState(false);
   const [profile,setProfile] = useState([]);
+  const { theme } = useContext(AuthContext);
   const override = {
     display: "block",
     margin: "0 auto",
@@ -31,20 +33,22 @@ export const Home = (props) => {
         });
         //get user
         const data = result.data.profiles;
-        console.log(data);
         setProfile(data);
         setLoading(false);
       } catch (err) {
         setLoading(false);
         console.log(err);
       }
+      
+      
     };
     fetchProfile();
+
 
   }, []);
 
   return (
-    <>
+    <div className={`App ${theme}`}>
     {loading &&
       <div className="sweet-loading">
         <SquareLoader
@@ -58,9 +62,9 @@ export const Home = (props) => {
       </div>}
 
   
-     <Nav home="true"  />
+     <Nav home="true"  theme={theme}  />
           <div>
-      <Parallax strength={-200} bgImage={require('../../assets/bg3.jpg')} blur={{min:-15, max:15}}>
+      <Parallax strength={-200} bgImage={theme!== 'light'?require('../../assets/bg4.jpg') :require('../../assets/bg3.jpg')} blur={{min:-15, max:15}}>
         <Header profile={profile} />
        
       {/* <Parallax strength={-200} bgImage={require('../../assets/bg2.jpg')} blur={{min:-15, max:15}}> */}
@@ -83,6 +87,6 @@ export const Home = (props) => {
      </div>
  
     
-        </>
+        </div>
   );
 };

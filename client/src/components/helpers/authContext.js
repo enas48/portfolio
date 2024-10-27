@@ -6,5 +6,7 @@ const AuthContext = createContext({
       isAdmin:null,
       login: () => {},
       logout: () => {},
+      theme:'dark',
+      setTheme: () => {},
 });
 export default AuthContext;

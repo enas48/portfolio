@@ -1,3 +1,4 @@
+
 .about-container {
   display: grid;
   grid-template-columns: 35% 50%;
@@ -17,9 +18,11 @@
   );
   display: grid;
   place-items: center;
+  
 }
 
 .about-me-img {
+  
   border-radius: 2rem;
   overflow: hidden;
   transform: rotate(10deg);
@@ -37,13 +40,51 @@
 }
 
 .about-card {
-  background: var(--bg-color-varient);
   border: 1px solid transparent;
   border-radius: 1rem;
   padding: 2rem;
   text-align: center;
   box-shadow: 2px 3px 8px -4px var(--color-primary);
   transition: var(--transition);
+  position: relative;
+}
+.education-card {
+  border: 1px solid transparent;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  box-shadow: 2px 3px 8px -4px var(--color-primary);
+  transition: var(--transition);
+  position: relative;
+}
+.education-card  .line{
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 2px;
+  background: var(--color-primary);
+  display: block;
+  left: 0;
+  top: 0;
+}
+.education-card .triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-left: 15px solid var(--color-primary);
+	border-bottom: 10px solid transparent;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+
+}
+.education-card  h5{
+  font-size: 1.1rem;
+}
+.light .about-card ,.light .education-card{
+  background: #F7F6F1;
+}
+.dark .about-card, .dark .education-card {
+  background: var(--color-grey);
 }
 
 .about-card:hover {
@@ -97,6 +138,9 @@
 @media screen and (max-width: 680px) {
   .about-me {
     margin-bottom: 3rem;
+  }
+  .about-cards {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 @media screen and (max-width: 480px) {

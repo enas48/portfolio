@@ -1,13 +1,14 @@
 import React from "react";
 import "./experience.css";
 import { BsPatchCheckFill } from "react-icons/bs";
+import { FaLaptopCode,FaDatabase  } from "react-icons/fa";
+import { PiSquaresFour } from "react-icons/pi";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { MdWork } from "react-icons/md";
-
 export const Experience = (props) => {
   return (
     <section id="experience">
@@ -22,8 +23,8 @@ export const Experience = (props) => {
             iconStyle={{ background: "#e5958e", color: "#fff" }}
             icon={<MdWork />}
           >
-            <h3 className="vertical-timeline-element-title mb-1 ">Team leader</h3>
-            <h4 className="vertical-timeline-element-subtitle">
+            <h3 className="vertical-timeline-element-title mb-2 ">Team leader</h3>
+            <h4 className="vertical-timeline-element-subtitle mb-1">
               Sphinx Publishing Company
             </h4>
             <ul className="ps-0">
@@ -49,8 +50,8 @@ export const Experience = (props) => {
             iconStyle={{ background: "#e5958e", color: "#fff" }}
             icon={<MdWork />}
           >
-            <h3 className="vertical-timeline-element-title mb-1">Technical Support</h3>
-            <h4 className="vertical-timeline-element-subtitle">
+            <h3 className="vertical-timeline-element-title mb-2">Technical Support</h3>
+            <h4 className="vertical-timeline-element-subtitle mb-1">
             The ministry of education in Oman.
             </h4>
             <ul className="ps-0">
@@ -68,8 +69,8 @@ export const Experience = (props) => {
             iconStyle={{ background: "#e5958e", color: "#fff" }}
             icon={<MdWork />}
           >
-            <h3 className="vertical-timeline-element-title mb-1">Web Developer</h3>
-            <h4 className="vertical-timeline-element-subtitle">
+            <h3 className="vertical-timeline-element-title mb-2">Web Developer</h3>
+            <h4 className="vertical-timeline-element-subtitle mb-1">
               Sphinx Publishing Company
             </h4>
             <ul className="ps-0">
@@ -92,12 +93,12 @@ export const Experience = (props) => {
       <h5 className="mb-4">What Skills I Have</h5>
       <div className="container experience-container">
         <div className="frontend-exp">
-          <h3>Frontend Development</h3>
+          <h3 className="d-flex align-items-center justify-content-center text-start gap-3"><FaLaptopCode className="exp-icon"/> <span>Frontend Development</span></h3>
           <div className="experience-content">
             {props.profile.length !== 0 && props.profile[0]?.frontendExperiences
               ? props.profile[0]?.frontendExperiences.map((item) => (
                   <div className="expeience-details" key={item.id}>
-                    <BsPatchCheckFill className="exp-icon" />
+                    <BsPatchCheckFill className="exp-icon text-2xl" />
                     <h4>{item.text}</h4>
                   </div>
                 ))
@@ -105,7 +106,8 @@ export const Experience = (props) => {
           </div>
         </div>
         <div className="backend-exp">
-          <h3>Backend Development</h3>
+        <h3 className="d-flex align-items-center justify-content-center text-start gap-3"><FaDatabase className="exp-icon"/> <span>Backend Development</span></h3>
+     
           <div className="experience-content">
             {props.profile.length !== 0 && props.profile[0]?.backendExperiences
               ? props.profile[0]?.backendExperiences.map((item) => (
@@ -118,7 +120,7 @@ export const Experience = (props) => {
           </div>
         </div>
         <div className="other-exp">
-          <h3>Other Experience</h3>
+        <h3 className="d-flex align-items-center justify-content-center text-start gap-3"><PiSquaresFour className="exp-icon"/> <span>Other Experience</span></h3>
           <div className="experience-content">
             {props.profile.length !== 0 && props.profile[0]?.otherExperiences
               ? props.profile[0]?.otherExperiences.map((item) => (

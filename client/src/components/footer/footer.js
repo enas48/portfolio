@@ -9,40 +9,40 @@ export const Footer = () => {
 
       <ul className='permalinks'>
         <li>
-          <Link to="header" smooth={true}  >Home</Link>
+          <Link to="header" smooth={true} duration={100} >Home</Link>
         </li>
         <li>
-          <Link to="about" smooth={true} >About</Link>
+          <Link to="about" smooth={true} duration={100}>About</Link>
         </li>
         <li>
-          <Link to="experience" smooth={true} >Experience</Link>
+          <Link to="experience" smooth={true} duration={100}>Experience</Link>
         </li>
         <li>
-          <Link to="projects" smooth={true} >Projects</Link>
+          <Link to="projects" smooth={true} duration={100}>Projects</Link>
         </li>
         <li>
-          <Link to="portfolio" smooth={true} >Portfolio</Link>
+          <Link to="portfolio" smooth={true} duration={100}>Portfolio</Link>
         </li>
         <li>
-          <Link to="contact" smooth={true} >Contact</Link>
+          <Link to="contact" smooth={true} duration={100}>Contact</Link>
         </li>
       </ul>
       <div className='footer-social'>
-          <a href="https://www.linkedin.com/in/enas-mohammed-78a245192"
-            target="_blank"
-            rel="noreferrer">
-            <FaLinkedinIn />
-          </a>
-          <a
-            href="https://github.com/enas48"
-            target="_blank"
-            rel="noreferrer">
-            <FiGithub />
-          </a>
+        <a href="https://www.linkedin.com/in/enas-mohammed-78a245192"
+          target="_blank"
+          rel="noreferrer">
+          <FaLinkedinIn />
+        </a>
+        <a
+          href="https://github.com/enas48"
+          target="_blank"
+          rel="noreferrer">
+          <FiGithub />
+        </a>
       </div>
       <div className="footer-copyright">
         <p className='mb-0'>     &copy; {new Date().getFullYear()}. All rights reserved.</p>
-  
+
       </div>
     </footer>
   )

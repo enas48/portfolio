@@ -32,7 +32,7 @@ margin: auto;
 }
 .header-social a {
     background: var(--color-primary);
-    color: var(--bg-color);
+    color: var(--color-white);
     padding: 0.6rem;
     border-radius: 50%;
     font-size: 1rem;
@@ -51,7 +51,8 @@ margin: auto;
     background-color:linear-gradient(var(--color-primary), transparent) ;
     overflow: hidden;
     text-align: center;
-
+    opacity: 1;
+    animation: fadeIn 2s ease-in; 
 }
 .scrol-down{
     position: absolute;
@@ -68,15 +69,15 @@ margin: auto;
     font-size: 2.5rem;
     z-index: 222;
     color: var(--color-primary)!important;
-    background-color: var(--bg-color);
+    background-color: var(--color-white);
     border: 1px solid transparent!important;
-  
+  overflow: hidden;
 }
 .scroll-top:hover{
     background-color: var(--color-primary);  
 }
 .scroll-top .icon{
-    box-shadow: 0px 1px 4px var(--bg-color);
+    box-shadow: 0px 1px 4px var(--color-white);
     display: block;
 
 }

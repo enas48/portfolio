@@ -16,7 +16,7 @@ border-radius: 0.5rem;
 display: flex;
 align-items: center;
 flex-direction: column;
-background: var(--bg-color-varient);
+background: var(--color-white);
 }
 .register-container form {
     width: 100%;
