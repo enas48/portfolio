@@ -1,4 +1,4 @@
-.projects-container {
+.certifications-container {
     display: grid;
     /* grid-template-columns: repeat(auto-fill, 600px); */
     justify-content: center;
@@ -7,7 +7,7 @@
     
   }
 
-  .projects-card {
+  .certifications-card {
     border: 1px solid transparent;
     border-radius: 1rem;
     padding: 2rem;
@@ -15,13 +15,4 @@
     box-shadow: 2px 3px 8px -4px var(--color-primary);
     transition: var(--transition);
     position: relative;
-  }
-  .light .projects-card{
-    background: #F7F6F1;
-  }
-  .dark .projects-card{
-    background: var(--color-grey);
-  }
-  .icon-projects{
-    font-size: 14px;
   }
