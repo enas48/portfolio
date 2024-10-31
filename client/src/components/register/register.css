@@ -1,5 +1,5 @@
 .register-container {
-    margin-top: 80px;
+    padding-top: 80px;
     height: calc(100vh - 80px);
     display: flex;
     justify-content: space-around;
@@ -16,7 +16,13 @@ border-radius: 0.5rem;
 display: flex;
 align-items: center;
 flex-direction: column;
-background: var(--color-white);
+
+}
+.dark .form-container{
+    background: var(--color-black);
+}
+.light .form-container{
+    background: var(--color-white);
 }
 .register-container form {
     width: 100%;
@@ -53,11 +59,17 @@ background: var(--color-white);
 }
 @media screen and (max-width: 668px){
     .register-container {
-        margin-top: 12rem;
+        padding-top:4rem;
+    }
+    .App{
+        padding: 7rem 0;
     }
 }
 @media only screen and (max-width: 580px){
 .register-container {
-    margin-top: 4rem;
+    padding-top: 4rem;
+}
+.App{
+    padding:  0;
 }
 }

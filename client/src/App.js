@@ -14,7 +14,8 @@ import { Profile } from "./components/admin/profile";
 import {Notfound} from "./components/notfoud/Notfound"
 import AuthVerify from "./components/helpers/AuthVerify";
 import AuthContext from "./components/helpers/authContext";
-
+import Sayer from "./components/projects/sayer";
+import Eib from "./components/projects/eib";
 
 export const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -91,6 +92,8 @@ export const App = () => {
             </Route>
 
             <Route path="login" element={<Login onLogin={login} />} />
+            <Route path="projects/sayer" element={<Sayer  />} />
+            <Route path="projects/eib" element={<Eib />} />
             {/* <Route path="register" element={<Register />} /> */}
 
             <Route path="*" element={<Notfound />} />

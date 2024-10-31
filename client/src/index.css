@@ -33,15 +33,24 @@ body {
   line-height: 1.7;
   font-size: 1.1rem;
 }
-
+.App{
+  min-height: 100vh;
+}
 .App.light {
   color: var(--color-black);
+  background-color: #fff;
 }
 
 .App.dark {
   color: var(--color-white);
+  background-color: #272727;
 }
-
+body:has(.App.light ){
+  background-color: #fff;
+}
+body:has(.App.dark ){
+  background-color: #272727;
+}
 h1,
 h2,
 h3,

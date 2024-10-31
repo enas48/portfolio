@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Nav } from "../nav/nav";
 import "../register/register.css";
 import MessageModal from "../uielements/messageModal";
@@ -8,10 +8,13 @@ import axios from "axios";
 import { setAuthToken } from "../helpers/setAuthToken";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useAuthContext } from "../helpers/useAuthContext";
+import AuthContext from "../helpers/authContext";
 // const appurl = "http://localhost:8000";
 // const appurl ="https://portfolio-backend-snowy-delta.vercel.app";
 
 export const Login = (props) => {
+  const { theme } = useContext(AuthContext);
+
   let navigate = useNavigate();
   const [disabled, setDisabled] = useState(false);
   const [formData, setFormData] = useState({
@@ -26,6 +29,7 @@ export const Login = (props) => {
   if (user) {
     return <Navigate replace to="/" />;
   }
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +77,7 @@ export const Login = (props) => {
     setMassage({ text: null, error: false });
   };
   return (
-    <>
+   <div className={`App ${theme}`}>
       {massage.text && <MessageModal massage={massage} onClear={handleClear} />}
       <Nav />
       <div className="container register-container">
@@ -114,6 +118,6 @@ export const Login = (props) => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
