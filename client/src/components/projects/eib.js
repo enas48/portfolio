@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import AuthContext from "../helpers/authContext";
 import './projects.css'
 import { Nav } from "../nav/nav";
@@ -6,6 +6,10 @@ import { FaCircle, FaStar } from "react-icons/fa6";
 import eib from '../../assets/eib-cover.png'
 function Eib() {
   const { theme } = useContext(AuthContext);
+  
+useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
   return (
     <div className={`App ${theme}`}>
       <Nav />
@@ -29,11 +33,11 @@ function Eib() {
           </ul>
           <h4 className=''>Features</h4>
           <ul className='p-0'>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /><p>A multistep form to collect a lot of information from users.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>A form validation on each step.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>Save data to database.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>Users can create a profile and update it.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>Dashboard so the admin of the application can see the data and download it. </p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /><p>A multistep form to collect a lot of information from users.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>A form validation on each step.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>Save data to database.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>Users can create a profile and update it.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>Dashboard so the admin of the application can see the data and download it. </p></li>
 
           </ul>
         </div>

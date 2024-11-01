@@ -68,7 +68,9 @@ scale: 1.05;
 .light .project-img {
   background: #F7F6F1;
 }
-
+.icon-style{
+flex: none;
+}
 @media screen and (max-width: 668px) {
   .project {
     padding-top: 0;

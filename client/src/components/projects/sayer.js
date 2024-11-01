@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import AuthContext from "../helpers/authContext";
 import './projects.css'
 import { Nav } from "../nav/nav";
 import { FaCircle , FaStar } from "react-icons/fa6";
 import sayer from '../../assets/sayer-cover.png'
+
+
 function Sayer() {
   const { theme } = useContext(AuthContext);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className={`App ${theme}`}>
       <Nav />
@@ -33,12 +38,12 @@ function Sayer() {
           </ul>
           <h4 className=''>Features</h4>
           <ul className='p-0'>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /><p> Dynamic landing page with ability to change data from dashboard.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>A multi-role authentication.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>Every month, a supervision plan can be created.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>Every month, a driver's plan can be created  with automatic distribution to schools.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>Supervisors can select drivers to go to the school.</p></li>
-            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6' /> <p>View and download reports.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /><p> Dynamic landing page with ability to change data from dashboard.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>A multi-role authentication.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>Every month, a supervision plan can be created.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>Every month, a driver's plan can be created  with automatic distribution to schools.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>Supervisors can select drivers to go to the school.</p></li>
+            <li className="d-flex align-items-baseline gap-1"><FaStar className='text-primary fs-6 icon-style' /> <p>View and download reports.</p></li>
 
           </ul>
         </div>
