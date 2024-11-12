@@ -24,7 +24,7 @@ export const Experience = (props) => {
             iconStyle={{ background: "#e5958e", color: "#fff" }}
             icon={<MdWork />}
           >
-            <h3 className="vertical-timeline-element-title mb-2 ">Team leader</h3>
+            <h3 className="vertical-timeline-element-title mb-2 ">Frontend Developers Team lead</h3>
             <h4 className="vertical-timeline-element-subtitle mb-1">
               Sphinx Publishing Company
             </h4>
